@@ -24,7 +24,7 @@
     <script type="text/javascript">
       // Client ID and API key from the Developer Console
            var CLIENT_ID = '901774097490-294f3s7it32rh65oodpclij4alj81h2m.apps.googleusercontent.com';
-      var API_KEY = '';
+	  var API_KEY = 'AIzaSyDQp4VLGP04s6X6Efp96waVV4NjYvTirYc';
       // Array of API discovery doc URLs for APIs used by the quickstart
       var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
       
@@ -71,11 +71,11 @@
 	  if (isSignedIn) {
 	      authorizeButton.style.display = 'none';
 	      signoutButton.style.display = 'block';
-	      listMajors();
 	  } else {
 	      authorizeButton.style.display = 'block';
 	      signoutButton.style.display = 'none';
 	  }
+	  listMajors();
       }
       
       /**
