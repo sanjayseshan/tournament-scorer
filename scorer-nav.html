@@ -1,4 +1,6 @@
-  <script>
+<base target="_parent">
+
+<script>
           function getParameterByName(name, url) {
             if (!url) url = window.location.href;
             name = name.replace(/[\[\]]/g, "\\$&");
@@ -136,7 +138,7 @@
 			      }).then(function(response) {
 				  var range = response.result;
 				  if (range.values.length > 0) {
-				        document.write("<center><h1>"+getParameterByName('tourn')+" Score Launcher</h1>");
+				        document.write("<center><!--<h1>"+getParameterByName('tourn')+" Score Launcher</h1>-->");
 
 				      for (i = 0; i < range.values.length; i++) {
 					  var row = range.values[i];
@@ -149,6 +151,17 @@
 						  tmp = tmp + "<td>Round "+x+"</td>"
 						  x++
 					      }
+
+					      document.write('Language: <select id="lang">\
+  <option value="en">English</option>\
+  <option value="es">Spanish</option>\
+  <option value="pt">Portuguese</option>\
+  <option value="de">German</option>\
+  <option value="el">Greek</option>\
+  <option value="tr">Turkish</option>\
+  <option value="ro">Romanian</option>\
+</select><br>')
+					      
 					      document.write("<table id='sort' border='1'><tr><td>Rank</td><td>Team</td>"+tmp+"<td>High Score</td></tr>")
 
 					  }
@@ -174,7 +187,7 @@
 						      tmp = ""
 						      x = 0
 						      while (x < rounds) {
-							  tmp = tmp + '<td><button onclick="window.location.href = \'scorer/index.html\'+datalink+\'&team='+row[1]+'&round='+(x+1)+'&index='+i+'\'">' + rowscnum[x]+'</button></td>'
+							  tmp = tmp + '<td><button onclick="window.parent.location.href = \'scorer/index.html\'+datalink+\'&team='+row[1]+'&round='+(x+1)+'&index='+i+'&lang=\'+language.value+\'\'">' + rowscnum[x]+'</button></td>'
 							  x++
 						      }
 						      document.write('<td><text class="rank"></text></td><td>'+row[0]+' #'+row[1] + ':</td> '+tmp+'<td>'+Math.max.apply(null,rowscnum)+'</td></tr>');
@@ -188,7 +201,7 @@
 				      }
 				      document.write("</table></center>")
 				    //  document.write('<scr'+''+'ipt>function sortTable() {  var table, rows, switching, i, x, y, shouldSwitch;  table = document.getElementById("sort");  switching = true;  while (switching) {    switching = false;    rows = table.rows;    for (i = 1; i < (rows.length - 1); i++) {      shouldSwitch = false;      x = rows[i].getElementsByTagName("TD")[5];      y = rows[i + 1].getElementsByTagName("TD")[5];      if (Number(x.innerHTML) < Number(y.innerHTML)) {        shouldSwitch = true;        break;      }    }    if (shouldSwitch) {      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);      switching = true;    }  }};sortTable()</scri'+''+'pt>')
-				      document.write('<script>a=1; while (a<=document.getElementsByClassName("rank").length){document.getElementsByClassName("rank")[a-1].innerHTML = "disabled";a++;}</scr'+''+'ipt>')
+				      document.write('<script>language = document.getElementById("lang");a=1; while (a<=document.getElementsByClassName("rank").length){document.getElementsByClassName("rank")[a-1].innerHTML = "disabled";a++;}</scr'+''+'ipt>')
 
 				  }
 			      }, function(response) {

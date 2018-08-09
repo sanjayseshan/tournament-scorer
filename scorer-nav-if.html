@@ -1,0 +1,126 @@
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="css/accordian.css">
+
+<link rel="stylesheet" href="w3.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ 
+<title>Score Entry View</title>
+
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js?ver=1.3.2'></script>
+
+
+</head>
+<body>
+  <div style="max-width: 1024px;margin:0 auto;">
+  <!--  <script> 
+    $(function(){
+      $("#header").load("header.html"); 
+    });
+    </script> -->
+  <div class="topnav" id="myTopnav" style="width:100%">
+
+  <script>
+    q = window.location.search
+    document.write('\
+    <a href="links.html'+q+'">Home</a>\
+  <a href="scorer-nav-if.html'+q+'">Scorer</a>\
+    <a href="readscores.html'+q+'">Scoreboard</a>\
+  ')
+    </script>
+    <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+</div>
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+     <div id="header"></div><br>
+  <section style="padding: 5px 5px 5px 15px;">
+<h2>
+  <script>
+          function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+          }
+
+  document.write(getParameterByName('tourn'));</script>
+
+ Referee Score Entry View
+</h2>
+
+    
+</section><br><section> <div class="text-body" style="font-size: 15px;">
+
+      
+
+<script type="application/javascript">
+
+	document.write('<iframe scrolling="no" frameBorder="0" onload="resizeIFrameToFitContent(document.getElementById(\'iFrame1\'))" width="100%" id="iFrame1" src="scorer-nav.html'+window.location.search+'"></iframe>')
+
+
+function resizeIFrameToFitContent( iFrame ) {
+
+    iFrame.width  = iFrame.contentWindow.document.body.scrollWidth;
+    iFrame.height = iFrame.contentWindow.document.body.scrollHeight;
+}
+
+window.addEventListener('DOMContentLoaded', function(e) {
+
+    var iFrame = document.getElementById( 'iFrame1' );
+    resizeIFrameToFitContent( iFrame );
+
+    // or, to resize all iframes:
+    var iframes = document.querySelectorAll("iframe");
+    for( var i = 0; i < iframes.length; i++) {
+        resizeIFrameToFitContent( iframes[i] );
+    }
+	} );
+
+
+setTimeout(function(){ resizeIFrameToFitContent(document.getElementById('iFrame1')); }, 3000);
+
+	window.onload = function() {resizeIFrameToFitContent(document.getElementById('iFrame1'))}
+
+</script>
+
+      
+</div>
+
+</section>
+<br>
+    <script> 
+    $(function(){
+      $("#footer").load("footer.html"); 
+    });
+    </script>
+     <div id="footer"></div>
+  </div>
+<script src='js/accordian.js'></script>
+
+</body>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-XXX-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+

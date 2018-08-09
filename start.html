@@ -1,4 +1,27 @@
-<h1>EV3Lessons Tournament Scoring System v<script>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="css/accordian.css">
+
+<link rel="stylesheet" href="w3.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ 
+<title>Start</title>
+ 
+</head>
+<body>
+  <div style="max-width: 1024px;margin:0 auto;">
+    <script> 
+    $(function(){
+      $("#header").load("header.html"); 
+    });
+    </script>
+     <div id="header"></div><br>
+  <section style="padding: 5px 5px 5px 15px;">
+
+  <h2>EV3Lessons Tournament Scoring System v<script>
 function textFileToArray(filename) {
     var reader = (window.XMLHttpRequest != null )
                ? new XMLHttpRequest()
@@ -8,20 +31,21 @@ function textFileToArray(filename) {
     return reader.responseText.split(/\r\n|\n|\r/);  //split(/(\r\n|\n)/g)
 }
 document.write(textFileToArray('/version.txt')[0]);
-  </script>
-</h1>
+  </script></h2>
+  </section><br><section> <div class="text-body" style="font-size: 15px;">
 
+      
 <p style="font-size: 150%;">
 <script src='https://www.google.com/recaptcha/api.js'></script>
 
 <body>
 
-To begin, sign in to a Google Account that will become the account you use to sign in to this tournament.<br> 
+To begin, sign in to a Google Account that will become the account you use to sign in to this tournament. We reccomend that you create a new account if you are uncomfortable with signing into your referees' devices with your account.<br> 
 <button id="authorize_button" style="display: none;">Sign in</button>
 <button id="signout_button" style="display: none;">Sign Out</button>
 
 <!-- HTML form -->Tournament Name:
-<input style="font-size:20px;width:500px; height:50px" type="text" rows="20" cols="50" id="text" name="text" value="">
+<input style="font-size:20px;max-width:500px; height:50px" type="text" rows="20" cols="50" id="text" name="text" value="">
 <br><br>
 
 
@@ -114,7 +138,8 @@ To begin, sign in to a Google Account that will become the account you use to si
        * Print the names and majors of students in a sample spreadsheet:
        * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
        */
-      function listMajors() {
+  function listMajors() {
+      document.getElementById('content').innerHTML = ""
         gapi.client.sheets.spreadsheets.values.get({
           spreadsheetId: '11eecocqxnYIqsYY-24pGfqPwhAEanU9mvCK4G43Abj0',
           range: 'A:D',
@@ -230,14 +255,40 @@ function makeSheet() {
       onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
 
-<input type="button" value="create!" onclick="makeSheet(); alert('Tournament is being created. Once done click the word \'link\' next to your tournament name below!')" />
+<input type="button" value="Create Tournament" onclick="makeSheet(); alert('Tournament is being created. Once done click the word \'link\' next to your tournament name below! It may take up to 30 seconds for your link to appear')" /><br>
 
 
 <br>
-If your tournament ALREADY exists, you will be taken directly to the urls. If your tournament DOES NOT exist yet, you will be asked to create a password(s).
+If your tournament ALREADY exists, press "link" next to your tournament name below.
 </p>
 
 <b>Load Tournament:</b><br><br>
     <div id="content"></div>
 
 </body>
+
+</div>
+
+</section>
+<br>
+    <script> 
+    $(function(){
+      $("#footer").load("footer.html"); 
+    });
+    </script>
+     <div id="footer"></div>
+  </div>
+<script src='js/accordian.js'></script>
+
+</body>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-XXX-2', 'auto');
+  ga('send', 'pageview');
+
+</script>

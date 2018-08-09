@@ -171,7 +171,7 @@
       <table style="width:98%; text-align:center; margin-left:auto; margin-right:auto;">
         <tr>
           <td style="width:25%; text-align:left">
-            <script>
+<!--            <script>
             var page = window.location.href.split("?")[0].split("#")[0] + '?lang=';
             var i;
             for (i = 0; i < langs.length; i++) {
@@ -185,7 +185,7 @@
               </a>\
               ')
             }
-            </script>
+            </script>-->
 
           </td>
 
@@ -207,7 +207,7 @@
           </td>
           <td style="width:25%; font-size:12px; text-align:right">
             <img alt="FLL..." style="border:1px solid #021a40;"
-            src="images/FLL.png" height="57"> <img alt="INTO ORBIT..." style="border:1px solid #021a40;" src="images/intoorbit.png" height="57"> <a href="http://www.flltutorials.com" data-ajax="false" class="no-mobile" ><img alt="FLL Tutorials" style="border:1px solid #021a40;"   src="images/flltutorials.png" width="139"></a><img class="only-mobile" alt="FLL Tutorials" style="border:1px solid #021a40;" src="images/flltutorials.png" width="139">
+            src="images/FLL.png" height="57"> <img alt="INTO ORBIT..." style="border:1px solid #021a40;" src="images/intoorbit.png" height="57"> <img alt="FLL Tutorials" style="border:1px solid #021a40;" src="images/flltutorials.png" width="139">
           </td>
         </tr>
       </table>
@@ -746,7 +746,7 @@ ga('send', 'pageview');
 <div class="no-mobile">
   <script>
   countrycode = language.split('-')[0]
-
+/*
     document.write('<a target="_blank"\
     href="https://itunes.apple.com/'+countrycode+'/app/fll-into-orbit-scorer/id1415402611?ls=1&mt=8">\
     <img height="68" style="padding: 15px" \
@@ -760,7 +760,7 @@ ga('send', 'pageview');
   href="https://play.google.com/store/apps/details?id=com.ev3lessons.fllintoorbitscorer&hl='+countrycode+'">\
   <img height="100" \
   src="google-play/'+countrycode+'_get.svg"></a>')
-
+*/
 </script>
 </div>
 <div style="padding-left: 10px; ">
@@ -783,9 +783,10 @@ function initpage() {
   document.getElementById('resetTxt').value = resetText
   document.getElementById('pointsTxt').innerHTML = pointsText
 
-/*
+
   document.getElementById('saveText').innerHTML = savescoreText
-  document.getElementById('loadText').innerHTML = loadsaveText
+/*
+    document.getElementById('loadText').innerHTML = loadsaveText
   document.getElementById('deleteText').innerHTML = deletesaveText
   document.getElementById('importText').innerHTML = importsaveText
   document.getElementById('exportText').innerHTML = exportsaveText
@@ -801,11 +802,11 @@ function initpage() {
   document.getElementById('startSW').innerHTML = startText
   document.getElementById('stopSW').innerHTML = stopText
   document.getElementById('resetSW').innerHTML = resetText
-
+*/
   document.getElementById('scorerTitle').innerHTML = scorerText
-  document.getElementById('timersTitle').innerHTML = timersText
+//  document.getElementById('timersTitle').innerHTML = timersText
   document.getElementById('savesTitle').innerHTML = savesText
-
+/*
   document.getElementById('signin-Google').innerHTML = signin
   document.getElementById('signout-Google').innerHTML = signout
   document.getElementById('GoogleCreate').innerHTML = GoogleCreate
@@ -824,7 +825,7 @@ function initpage() {
   document.getElementById('instructionsE').innerHTML = instructionsE
   document.getElementById('instructionsF').innerHTML = instructionsF
     document.getElementById('instructionsG').innerHTML = instructionsG
-
+*/
   document.getElementById('teamText').innerHTML = teamText
     document.getElementById('roundText').innerHTML = roundText
 
@@ -836,11 +837,11 @@ document.getElementById('stopwatchText').innerHTML = stopwatchText
 
         document.getElementById('systemText').innerHTML = systemText
 
-            document.getElementById('idText').innerHTML = idText
+  //          document.getElementById('idText').innerHTML = idText
 
     
   document.getElementById('translatorCredit').innerHTML = translatorCredit
-
+/*
     if ((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )) {
 	document.getElementById('notIE').style.display = 'none'
     } else {
