@@ -25,10 +25,21 @@
 
   <script>
     q = window.location.search
-    document.write('\
+ 	  function getParameterByName(name, url) {
+	      if (!url) url = window.location.href;
+	      name = name.replace(/[\[\]]/g, "\\$&");
+	      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+		  results = regex.exec(url);
+	      if (!results) return null;
+	      if (!results[2]) return '';
+	      return decodeURIComponent(results[2].replace(/\+/g, " "));
+	  }
+  document.write('\
     <a href="links.html'+q+'">Home</a>\
   <a href="scorer-nav-if.html'+q+'">Scorer</a>\
     <a href="readscores.html'+q+'">Scoreboard</a>\
+    <a href="users.html'+q+'">User Manager</a>\
+    <a href="https://docs.google.com/spreadsheets/d/'+getParameterByName('config')+'/edit">Setup Panel</a>\
   ')
     </script>
     <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
@@ -47,16 +58,7 @@ function myFunction() {
   <section style="padding: 5px 5px 5px 15px;">
 <h2>
   <script>
-          function getParameterByName(name, url) {
-            if (!url) url = window.location.href;
-            name = name.replace(/[\[\]]/g, "\\$&");
-            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-            results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, " "));
-          }
-
+    
   document.write(getParameterByName('tourn'));</script>
 
  Referee Score Entry View

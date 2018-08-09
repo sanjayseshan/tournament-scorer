@@ -1,5 +1,5 @@
 <head>
-<link rel="stylesheet" type="text/css" href="style-pre.css">
+<link rel="stylesheet" type="text/css" href="style.css">
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="css/accordian.css">
@@ -8,50 +8,72 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  
-<title>Start</title>
+<title>User Management</title>
  
 </head>
 <body>
   <div style="max-width: 1024px;margin:0 auto;">
-    <script> 
+  <!--  <script> 
     $(function(){
       $("#header").load("header.html"); 
     });
+    </script> -->
+  <div class="topnav" id="myTopnav" style="width:100%">
+
+  <script>
+    q = window.location.search
+    document.write('\
+    <a href="links.html'+q+'">Home</a>\
+  <a href="scorer-nav-if.html'+q+'">Scorer</a>\
+    <a href="readscores.html'+q+'">Scoreboard</a>\
+  ')
     </script>
+    <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+</div>
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
      <div id="header"></div><br>
   <section style="padding: 5px 5px 5px 15px;">
+<h2>
+  <script>
+          function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+          }
 
-  <h2>EV3Lessons Tournament Scoring System v<script>
-function textFileToArray(filename) {
-    var reader = (window.XMLHttpRequest != null )
-               ? new XMLHttpRequest()
-               : new ActiveXObject("Microsoft.XMLHTTP");
-    reader.open("GET", filename, false );
-    reader.send();
-    return reader.responseText.split(/\r\n|\n|\r/);  //split(/(\r\n|\n)/g)
-}
-document.write(textFileToArray('version.txt')[0]);
-  </script></h2>
-  </section><br><section> <div class="text-body" style="font-size: 15px;">
+  document.write(getParameterByName('tourn'));</script>
+
+ User Manager
+</h2>
+
+    
+</section><br><section> <div class="text-body" style="font-size: 15px;">
 
       
-<p style="font-size: 150%;">
-<script src='https://www.google.com/recaptcha/api.js'></script>
 
-<body>
 
-To begin, sign in to a Google Account that will become the account you use to sign in to this tournament. We reccomend that you create a new account if you are uncomfortable with signing into your referees devices with your account.<br> 
+<b>Sign in to the associated Google account to continue:</b><br>
 <button id="authorize_button" style="display: none;">Sign in</button>
 <button id="signout_button" style="display: none;">Sign Out</button>
 
-<!-- HTML form -->Tournament Name:
-<input style="font-size:20px;max-width:500px; height:50px" type="text" rows="20" cols="50" id="text" name="text" value="">
-<br><br>
-
+    <div id="content"></div>
 
    <script type="text/javascript">
       // Client ID and API key from the Developer Console
-      var CLIENT_ID = '901774097490-294f3s7it32rh65oodpclij4alj81h2m.apps.googleusercontent.com';
+       var CLIENT_ID = '901774097490-294f3s7it32rh65oodpclij4alj81h2m.apps.googleusercontent.com';
       var API_KEY = '';
 
       // Array of API discovery doc URLs for APIs used by the quickstart
@@ -100,11 +122,11 @@ To begin, sign in to a Google Account that will become the account you use to si
         if (isSignedIn) {
           authorizeButton.style.display = 'none';
           signoutButton.style.display = 'block';
+          listMajors();
         } else {
           authorizeButton.style.display = 'block';
           signoutButton.style.display = 'none';
         }
-          listMajors();
       }
 
       /**
@@ -138,8 +160,7 @@ To begin, sign in to a Google Account that will become the account you use to si
        * Print the names and majors of students in a sample spreadsheet:
        * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
        */
-  function listMajors() {
-      document.getElementById('content').innerHTML = ""
+      function listMajors() {
         gapi.client.sheets.spreadsheets.values.get({
           spreadsheetId: '11eecocqxnYIqsYY-24pGfqPwhAEanU9mvCK4G43Abj0',
           range: 'A:D',
@@ -149,7 +170,10 @@ To begin, sign in to a Google Account that will become the account you use to si
             for (i = 0; i < range.values.length; i++) {
               var row = range.values[i];
               // Print columns A and E, which correspond to indices 0 and 4.
-              appendPre(row[0] + ': <a href="links.html?tourn=' + row[0] + '&score='+row[1]+'&mission='+row[2]+'&config='+row[3]+'">link</a>');
+		//              appendPre(row[0] + ': <a href="links.html?tourn=' + row[0] + '&score='+row[1]+'&mission='+row[2]+'&config='+row[3]+'">link</a>');
+		if (row[0] == getParameterByName('tourn')) {
+		    datalink = '?tourn=' + row[0] + '&score='+row[1]+'&mission='+row[2]+'&config='+row[3]
+		}
             }
           } else {
             appendPre('No data found.');
@@ -178,107 +202,6 @@ function appendValues(spreadsheetId, range, valueInputOption, _values, callback)
   });
 }
 
-function zeros(dimensions) {
-    var array = [];
-
-    for (var i = 0; i < dimensions[0]; ++i) {
-        array.push(dimensions.length == 1 ? 0 : zeros(dimensions.slice(1)));
-    }
-
-    return array;
-}
-
-function makeSheet() {
-    var spreadsheetBody = {
-	//	    "title":"FLLTutorials.com FLL Into Orbit Scorer"
-	// TODO: Add desired properties to the request body.
-    };
-    
-    var request = gapi.client.sheets.spreadsheets.create({}, spreadsheetBody);
-    request.then(function(response) {
-	// TODO: Change code below to process the `response` object:
-	sheet1 = response.result;
-	console.log(sheet1);
-	var spreadsheetBody = {
-	    //	    "title":"FLLTutorials.com FLL Into Orbit Scorer"
-	    // TODO: Add desired properties to the request body.
-	};
-	
-	var request = gapi.client.sheets.spreadsheets.create({}, spreadsheetBody);
-	request.then(function(response) {
-	    // TODO: Change code below to process the `response` object:
-	    sheet2 = response.result;
-	    console.log(sheet2);
-	    var spreadsheetBody = {
-		//	    "title":"FLLTutorials.com FLL Into Orbit Scorer"
-		// TODO: Add desired properties to the request body.
-	    };
-	    
-	    var request = gapi.client.sheets.spreadsheets.create({}, spreadsheetBody);
-	    request.then(function(response) {
-		// TODO: Change code below to process the `response` object:
-
-		sheet3 = response.result;
-		console.log(sheet3);
-			  
-
-		appendValues(sheet3["spreadsheetId"],'A:A', 'USER_ENTERED', [["# of rounds:","3"],
-			  ["Team Name:", "Team #:"],
-			  ["team e.g. 1", "2001"],
-			  ["team e.g. 2", "2002"],
-									     ["team e.g. 3", "2003"]])
-
-
-		appendValues(sheet1["spreadsheetId"],'A:A', 'USER_ENTERED', zeros([200,7]))
-		appendValues(sheet2["spreadsheetId"],'A:A', 'USER_ENTERED', zeros([200,7]))
-
-		insertPermission(sheet1["spreadsheetId"])
-		insertPermission(sheet3["spreadsheetId"])
-
-		nameSheet('Score Sheet',sheet1["spreadsheetId"])
-		nameSheet('Mission History Sheet',sheet2["spreadsheetId"])
-		nameSheet('Config Sheet',sheet3["spreadsheetId"])
-		
-
-		appendValues('11eecocqxnYIqsYY-24pGfqPwhAEanU9mvCK4G43Abj0','A:A', 'USER_ENTERED', [[document.getElementById('text').value,sheet1["spreadsheetId"],sheet2["spreadsheetId"],sheet3["spreadsheetId"]]])
-
-			
-		
-		
-	    }, function(reason) {
-		console.error('error: ' + reason.result.error.message);
-	    });
-	}, function(reason) {
-	    console.error('error: ' + reason.result.error.message);
-	});
-    }, function(reason) {
-	console.error('error: ' + reason.result.error.message);
-    });
-  }
-
-  function nameSheet(name, sheet) {
-      var requests = [];
-      // Change the spreadsheet's title.
-      requests.push({
-	  updateSpreadsheetProperties: {
-	      properties: {
-		  title: name
-	      },
-	      fields: 'title'
-      }
-      });
-      var batchUpdateRequest = {requests: requests}
-      
-      gapi.client.sheets.spreadsheets.batchUpdate({
-	  spreadsheetId: sheet,
-	  resource: batchUpdateRequest
-      }).then((response) => {
-	  var findReplaceResponse = response.result.replies[1].findReplace;
-	  console.log(`${findReplaceResponse.occurrencesChanged} replacements made.`);
-      });
-  }
-
-
 function insertPermission(file){
     request = gapi.client.drive.permissions.insert({
         'fileId': file,
@@ -291,6 +214,30 @@ function insertPermission(file){
     request.then(function(response) {console.log(response)});
 }
 
+      function addUser(file, user) {
+	  request = gapi.client.drive.permissions.insert({
+	      'fileId': file,
+	      'resource': {
+		  "role": "writer",
+		  "type": "user",
+		  "value": user
+	      }
+	  })
+	  request.then(function(response) {console.log(response)});
+      }
+
+      function run() {
+	  vals = document.getElementById('emails').value.split('\n')
+	  console.log(vals)
+	  x = 0
+	  while (x < vals.length) {
+	      addUser(getParameterByName('score'),vals[x])
+	      addUser(getParameterByName('mission'),vals[x])
+	      x++
+	      appendPre('<b style="color:red">added user at index '+x+'</b>')
+	  }
+      }
+
     </script>
 
     <script async defer src="https://apis.google.com/js/api.js"
@@ -298,18 +245,15 @@ function insertPermission(file){
       onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
 
-<input type="button" value="Create Tournament" onclick="makeSheet(); alert('Tournament is being created. Once done click the word \'link\' next to your tournament name below! It may take up to 30 seconds for your link to appear')" /><br>
 
-
+    <br>
+    Add the Google emails of each referee below (1 per line):<br>
+<textarea id="emails"></textarea>
 <br>
-If your tournament ALREADY exists, press "link" next to your tournament name below.
-</p>
+<button onclick="run()">Add Users</button>
 
-<b>Load Tournament:</b><br><br>
-    <div id="content"></div>
 
-</body>
-
+      
 </div>
 
 </section>

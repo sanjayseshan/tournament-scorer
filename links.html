@@ -20,12 +20,24 @@
     </script> -->
   <div class="topnav" id="myTopnav" style="width:100%">
 
-  <script>
+    <script>
+               function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+          }
+
     q = window.location.search
     document.write('\
     <a href="links.html'+q+'">Home</a>\
   <a href="scorer-nav-if.html'+q+'">Scorer</a>\
     <a href="readscores.html'+q+'">Scoreboard</a>\
+    <a href="users.html'+q+'">User Manager</a>\
+    <a href="https://docs.google.com/spreadsheets/d/'+getParameterByName('config')+'/edit">Setup Panel</a>\
   ')
     </script>
     <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
@@ -44,16 +56,7 @@ function myFunction() {
   <section style="padding: 5px 5px 5px 15px;">
 <h2>
   <script>
-          function getParameterByName(name, url) {
-            if (!url) url = window.location.href;
-            name = name.replace(/[\[\]]/g, "\\$&");
-            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-            results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, " "));
-          }
-
+ 
   document.write(getParameterByName('tourn'));</script>
 
  Tournament Dashboard
@@ -73,9 +76,8 @@ function myFunction() {
 
    <script type="text/javascript">
       // Client ID and API key from the Developer Console
-      var CLIENT_ID = '770638819380-bs28pclo8lguc58e01oju4ei1r88i320.apps.googleusercontent.com';
-      var API_KEY = 'AIzaSyDBhBXveLafOasTo5b-n9__PsM5iKOQgCE';
-
+      var CLIENT_ID = '901774097490-294f3s7it32rh65oodpclij4alj81h2m.apps.googleusercontent.com';
+      var API_KEY = '';
       // Array of API discovery doc URLs for APIs used by the quickstart
       var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
 
@@ -220,9 +222,10 @@ function appendValues(spreadsheetId, range, valueInputOption, _values, callback)
   <b>STEP 1:</b> Fill out the teams list and number of rounds in the
   <script>
     dir = window.location.hash.substring(1);
-    document.write('<a href="https://docs.google.com/spreadsheets/d/'+getParameterByName('config')+'/edit">Tournament Director Setup Panel</a>.<br><br>');
+    document.write('<a href="https://docs.google.com/spreadsheets/d/'+getParameterByName('config')+'/edit">Tournament Director Setup Panel</a>. ');
   </script>
-
+    You can add guest referees to score in the <script> document.write('<a href="users.html'+q+'">User Manager</a>') </script>.
+  <br><br>
   <b>STEP 2:</b> Referees can now score teams using this special
   version of the EV3Lessons scorer which gives them a dropdown menu
   will all the teams the Admin entered in Step 1. Once each referee
