@@ -1,8 +1,4 @@
-<html>
-  <head>
-    <meta http-equiv="refresh" content="180;">
-
-<script>
+  <script>
           function getParameterByName(name, url) {
             if (!url) url = window.location.href;
             name = name.replace(/[\[\]]/g, "\\$&");
@@ -14,8 +10,6 @@
           }
 
 </script>
-</head>
-<body>
 <button id="authorize_button" style="display: none;">Sign in</button>
 <button id="signout_button" style="display: none;">Sign Out</button>
 
@@ -142,7 +136,7 @@
 			      }).then(function(response) {
 				  var range = response.result;
 				  if (range.values.length > 0) {
-				        document.write("<center><img src='ev3lessons.png'> <img style='height:200px;width:auto' src='FLLlogo.png'><h1 style='font-size:250%'>"+getParameterByName('tourn')+" Scoreboard</h1>");
+				        document.write("<center><h1>"+getParameterByName('tourn')+" Score Launcher</h1>");
 
 				      for (i = 0; i < range.values.length; i++) {
 					  var row = range.values[i];
@@ -155,7 +149,7 @@
 						  tmp = tmp + "<td>Round "+x+"</td>"
 						  x++
 					      }
-					      document.write("<table style='font-size:250%;border-collapse: collapse;' id='sort' border='1'><tr style='background-color: yellow'><td>Rank</td><td>Team</td>"+tmp+"<td>High Score</td></tr>")
+					      document.write("<table id='sort' border='1'><tr><td>Rank</td><td>Team</td>"+tmp+"<td>High Score</td></tr>")
 
 					  }
 
@@ -170,7 +164,6 @@
 						  var rowsc = rangesc.values[b];
 						//  alert(b + " " + parseInt(row[1])+ " " + rowsc[0])
 						  
-//						  if (b == parseInt(row[1])-1)  {
 						  if (b == i)  {
 						      rowscnum = []
 						      x = 0
@@ -181,10 +174,10 @@
 						      tmp = ""
 						      x = 0
 						      while (x < rounds) {
-							  tmp = tmp + "<td>" + rowscnum[x]+"</td>"
+							  tmp = tmp + '<td><button onclick="window.location.href = \'scorer/index.html\'+datalink+\'&team='+row[1]+'&round='+(x+1)+'&index='+i+'\'">' + rowscnum[x]+'</button></td>'
 							  x++
 						      }
-						      document.write('<td><text class="rank"></text></td><td>'+row[1] +' - '+row[0]+':</td> '+tmp+'<td style="font-weight:bold">'+Math.max.apply(null,rowscnum)+'</td></tr>');
+						      document.write('<td><text class="rank"></text></td><td>'+row[0]+' #'+row[1] + ':</td> '+tmp+'<td>'+Math.max.apply(null,rowscnum)+'</td></tr>');
 						  }
 
 						  	 
@@ -194,9 +187,8 @@
 				
 				      }
 				      document.write("</table></center>")
-				      document.write('<scr'+''+'ipt>function sortTable() {  var table, rows, switching, i, x, y, shouldSwitch;  table = document.getElementById("sort");  switching = true;  while (switching) {    switching = false;    rows = table.rows;    for (i = 1; i < (rows.length - 1); i++) {      shouldSwitch = false;      x = rows[i].getElementsByTagName("TD")[6];      y = rows[i + 1].getElementsByTagName("TD")[6];      if (Number(x.innerHTML) < Number(y.innerHTML)) {        shouldSwitch = true;        break;      }    }    if (shouldSwitch) {      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);      switching = true;    }  }};sortTable()</scri'+''+'pt>')
-				      	document.write('<script>a=1; while (a<=document.getElementsByClassName("rank").length){document.getElementsByClassName("rank")[a-1].innerHTML = "<b>"+a+"</b>";a++;}</scr'+''+'ipt>')
-				      	document.write(' <style>   * {  font-family: sans-serif; } </style>')
+				    //  document.write('<scr'+''+'ipt>function sortTable() {  var table, rows, switching, i, x, y, shouldSwitch;  table = document.getElementById("sort");  switching = true;  while (switching) {    switching = false;    rows = table.rows;    for (i = 1; i < (rows.length - 1); i++) {      shouldSwitch = false;      x = rows[i].getElementsByTagName("TD")[5];      y = rows[i + 1].getElementsByTagName("TD")[5];      if (Number(x.innerHTML) < Number(y.innerHTML)) {        shouldSwitch = true;        break;      }    }    if (shouldSwitch) {      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);      switching = true;    }  }};sortTable()</scri'+''+'pt>')
+				      document.write('<script>a=1; while (a<=document.getElementsByClassName("rank").length){document.getElementsByClassName("rank")[a-1].innerHTML = "disabled";a++;}</scr'+''+'ipt>')
 
 				  }
 			      }, function(response) {
@@ -250,69 +242,3 @@ function appendValues(spreadsheetId, range, valueInputOption, _values, callback)
       onload="this.onload=function(){};handleClientLoad()"
       onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
-
-
-    
-								   <script>
-								     var fps = 100;
-var speedFactor = 0.001;
-var minDelta = 0.5;
-var autoScrollSpeed = 10;
-var autoScrollTimer, restartTimer;
-var isScrolling = false;
-var prevPos = 0, currentPos = 0;
-var currentTime, prevTime, timeDiff;
-
-window.addEventListener("scroll", function (e) {
-    // window.pageYOffset is the fallback value for IE
-    currentPos = window.scrollY || window.pageYOffset;
-});
-
-window.addEventListener("wheel", handleManualScroll);
-window.addEventListener("touchmove", handleManualScroll);
-
-function handleManualScroll() {
-    // window.pageYOffset is the fallback value for IE
-    currentPos = window.scrollY || window.pageYOffset;
-    clearInterval(autoScrollTimer);
-    if (restartTimer) {
-        clearTimeout(restartTimer);
-    }
-    restartTimer = setTimeout(() => {
-        prevTime = null;
-        setAutoScroll();
-    }, 50);
-}
-
-function setAutoScroll(newValue) {
-    if (newValue) {
-        autoScrollSpeed = speedFactor * newValue;
-    }
-    if (autoScrollTimer) {
-        clearInterval(autoScrollTimer);
-    }
-    autoScrollTimer = setInterval(function(){
-        currentTime = Date.now();
-        if (prevTime) {
-            if (!isScrolling) {
-                timeDiff = currentTime - prevTime;
-                currentPos += autoScrollSpeed * timeDiff;
-                if (Math.abs(currentPos - prevPos) >= minDelta) {
-                    isScrolling = true;
-                    window.scrollTo(0, currentPos);
-                    isScrolling = false;
-                    prevPos = currentPos;
-                    prevTime = currentTime;
-                }
-            }
-        } else {
-            prevTime = currentTime;
-        }
-    }, 1000 / fps);
-}
-
-	      setAutoScroll(20);
-	      </script>
-
-</body>
-</html>

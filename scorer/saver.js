@@ -1,8 +1,21 @@
+// Saving System 3.3.0
+
+// JS code to save and load saves to/from localStorage or a variable
+// Legacy opt-in code --> replaced with the Google Sheets API
+
+//Init vars
+n = 0;
+
 store = []
 
-//var monthNames = ["","January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+score = ""
+datetime = ""
 
+if (window.localStorage.DRIOS1scorer == undefined){
+  window.localStorage.DRIOS1scorer = ''
+}
 
+// Function to get status check of all missions and store in var store
 function getvar() {
   count = 0
   count1 = 0
@@ -11,21 +24,19 @@ function getvar() {
     count1 = 0
     while (count1 < all_mission[count][1].length) {
       store = store.concat([[ ""+all_mission[count][1][count1] +"|"+ window[all_mission[count][1][count1]+'save']+""]])
-      //alert([[ all_mission[count][1][count1] , window[all_mission[count][1][count1]]]])
       count1 = count1+1
     }
     count = count + 1
   }
-  //alert(store)
 }
 
+//load a getvar() var store save
 function loadsave(save) {
   newsave = String(save).split(',')
   count = 0
   count1 = 0
   while (count < newsave.length-0){
     save1 = newsave[count].split('|')
-    //alert(save1[0])
     if (document.getElementById('yes'+save1[0]) != null) {
       if (parseInt(save1[1]) != 0)  {
         document.getElementById('yes'+save1[0]).click()
@@ -42,10 +53,7 @@ function loadsave(save) {
         document.getElementById('no'+save1[0]).click()
       }
     } else {
-      //	    document.getElementById(save1[0]).value = parseInt(save1[1])
       $("#"+save1[0]).val(parseInt(save1[1])).slider("refresh");
-      //alert(save1)
-      //alert(window[save1[0]+'inc'])
       recalc(window[save1[0]+'inc']*parseInt(save1[1]),save1[0],parseInt(save1[1]))
     }
     count = count + 1
@@ -53,20 +61,15 @@ function loadsave(save) {
   }
 }
 
-
-function saver() {
-  getvar();
-  window.localStorage.DRIOSscorer = window.localStorage.DRIOSscorer + '/' + store
-  alert('saved');
-}
+// Load a localStorage getvar() var store save by id
 function loader(save) {
-  alert('loaded');
+  alert(loadedText);
   data = window.localStorage.DRIOSscorer.split('/')[save];
-  //alert(data)
   loadsave(String(data));
 }
 
 
+// redraw Improvement graph
 function drawBasic() {
   vv = 0;
 
@@ -80,15 +83,6 @@ function drawBasic() {
     vvv = vvv + 1;
     nn = nn+1;
   }
-  //format:'#,###%'
-
-  /*	     if (array[2] != undefined){
-  array[2] = parseInt(window.localStorage.DRIOS1scorer.split(' Points')[2].split(',')[1]);
-}*/
-//    array = cleanArray(array);
-//   array[2] = parseInt(window.localStorage.DRIOS1scorer.split(' Points')[2].split(',')[1]);
-//   array[3] = parseInt(window.localStorage.DRIOS1scorer.split(' Points')[3].split(',')[1]);
-
 
 
 $(function () {
@@ -98,15 +92,12 @@ $(function () {
       x: -20
     },
     subtitle: {
-      // text: 'Sou rce: WorldClimate.com',
       x: -20
     },
     xAxis: {
       tickInterval: 1,
       minRange: 1,
       allowDecimals: false,
-      //startOnTick: true,
-      //endOnTick: true
     },
     yAxis: {
       title: {
@@ -138,68 +129,74 @@ $(function () {
 
 }
 
-
-function loadsaves() {
-  n = 0;
-  a = window.localStorage.DRIOS1scorer.split(',').length;
-  document.getElementById('saves').innerHTML = "";
-  while(n < a) {
-    //alert(n)
-    document.getElementById('saves').innerHTML = document.getElementById('saves').innerHTML +' '+saveText+' '+ String(n+1) + ': ' +  window.localStorage.DRIOS1scorer.split(',')[n] + '<br>'  ;
-    n = n+1;
-    //	      alert(x);
-  }
-
-
+// Display saveDateTimeScore() data under graph
+function displaysaves() {
+    n = 0;
+    a = window.localStorage.DRIOS1scorer.split(',').length;
+    document.getElementById('saves').innerHTML = "";
+    if (window.localStorage.DRIOS1scorer != undefined && window.localStorage.DRIOS1scorer != "") {
+	while(n < a) {
+	    //alert(n)
+	    document.getElementById('saves').innerHTML = document.getElementById('saves').innerHTML +' '+saveText+' '+ String(n+1) + ': ' +  window.localStorage.DRIOS1scorer.split(',')[n].split('Points')[0] + pointsText + window.localStorage.DRIOS1scorer.split(',')[n].split('Points')[1] + '<br>'  ;
+	    n = n+1;
+	}
+    }
 
 }
 
-
-n = 0;
-//     google.load('visualization', '1', {packages: ['corechart', 'line']});
-function saveLocalStorage() {
+// Save Date Time and Score to localStorage
+function saveDateTimeScore() {
   var currentTime = new Date()
   var month = currentTime.getMonth() + 1
   var day = currentTime.getDate()
   var year = currentTime.getFullYear()
-//  var currentdate = month + "/" + day + "/" + year;
-  var currentdate = ": " + day + " " + monthNames[month] + " " + year;
+//  var currentdate = ": " + day + " " + monthNames[month] + " " + year;
+  var currentdate = month + "/" + day + "/" + year;
 
 
   var hours = currentTime.getHours()
   var minutes = currentTime.getMinutes()
+
+  score = document.getElementById('allpoints').innerHTML;
+
   if (minutes < 10){
     minutes = "0" + minutes
   }
 
-  //#if(hours > 11){
-  //#   var ampm = "PM";
-  //#} else {
-  //#   var ampm = "AM";
-  //#}
-  //#if (hours > 12) {
-  //#   hours = hours - 12;
-  //      #}
+    /*
+// Use 12hr clock
+  if(hours > 11){
+     var ampm = "PM";
+  } else {
+     var ampm = "AM";
+  }
+  if (hours > 12) {
+     hours = hours - 12;
+  }
+*/
+// Use 24hr clock for international usage
   ampm = ''
   var timex = hours + ":" + minutes + " ";
 
   var currenttime = timex + '' + ampm;
   //   var currenttime = timex;
-  var datetime = currenttime + ' ' + currentdate;
-
-
-  if (window.localStorage.DRIOS1scorer != undefined && window.localStorage.DRIOS1scorer != '' ) {
-    window.localStorage.DRIOS1scorer = String(window.localStorage.DRIOS1scorer) + ',' + String( allmission) + ' Points - ' + datetime;
-    //window.localStorage.DRIOS1scorer =  allmission;
-    //alert(allmission);
-    //alert(window.localStorage.DRIOS1scorer);
-  } else {
-    window.localStorage.DRIOS1scorer =  allmission  + ' Points - ' + datetime;
-    //alert(window.localStorage.DRIOS1scorer + 'hi');
-  }
-
+  //  datetime = currenttime + ' ' + currentdate;
+  datetime = currentdate + ' ' + currenttime;
 }
 
-if (window.localStorage.DRIOS1scorer == undefined){
-  window.localStorage.DRIOS1scorer = ''
+
+// save getvar() and saveDateTimeScore to localStorage
+function saver() {
+    // Save all missions
+    getvar();
+    window.localStorage.DRIOSscorer = window.localStorage.DRIOSscorer + '/' + store
+    // Save time stamp and score
+    saveDateTimeScore()
+    if (window.localStorage.DRIOS1scorer != undefined && window.localStorage.DRIOS1scorer != '' ) {
+	window.localStorage.DRIOS1scorer = String(window.localStorage.DRIOS1scorer) + ',' + String( score ) + ' Points - ' + datetime;
+    } else {
+	window.localStorage.DRIOS1scorer =  score  + ' Points - ' + datetime;
+    }
+
+    alert(savedText);
 }

@@ -1,3 +1,5 @@
+// Timer System 1.5
+
 var audio = new Audio('ring.wav');
 var CDseconds = 30, CDminutes = 2;
 var CDinterval=null;
@@ -52,3 +54,4 @@ function SWtimer() {
     if (SWinterval == null)
 	SWinterval = setInterval(add, 100);
 }
+

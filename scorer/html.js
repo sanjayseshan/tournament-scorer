@@ -1,3 +1,5 @@
+// Modular HTML buttons 3.3.0
+
 all_mission = []
 
 function createbutton(mission,points,description){
@@ -60,7 +62,7 @@ function createrange(mission, increment, min, max, start, description,js) {
   '+description+'	  </td>\
   </tr>\
   <tr>\
-  <td width="200">\
+  <td >\
   <input type="range"  data-highlight="true" data-theme="b" data-show-value="true" name="'+mission+'" id="'+mission+'" value="'+start+'" min="'+min+'" max="'+max+'" step="1" onchange="check_missions(\''+mission+'\');recalc(this.value*'+increment+',\''+mission+'\',this.value);">\
   <p id="'+mission+'Txt" style="color: red"></p>\
   </td>\

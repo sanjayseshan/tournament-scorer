@@ -1,3 +1,5 @@
+// Score Calculator 3.3.0
+
 allmission = 0
 
 function checkbuttonconflict(mission1,mission2,priority) {
@@ -105,13 +107,6 @@ function check_missions(mission) {
 }
 
 
-savepts = 0
-maxwater = 5
-fountainUsed = 0
-treatmentUsed = 1
-flowerUsed = 0
-stackUsed = 0
-
 function recalc(points,mission,saveValue){
 
   // if (alt == 1 && points == 0) {
@@ -149,9 +144,9 @@ function recalc(points,mission,saveValue){
   document.getElementById('allpoints').innerHTML = allmission
 
     var ranges = $("input[data-type='range']");
-//    var radios = $("input[type='radio']");
+    var radios = $("input[type='radio']");
 
     ranges.slider("refresh");
-//    radios.checkboxradio("refresh");
+    radios.checkboxradio("refresh");
 
 }
