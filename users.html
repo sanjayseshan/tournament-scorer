@@ -182,6 +182,19 @@
 	      }, function(response) {
 		  appendPre('Error: ' + response.result.error.message);
 	      });
+	      gapi.client.drive.permissions.list({
+		  'fileId': getParameterByName('mission')
+	      }).then((response) => {
+		  var result = response.result;
+		  console.log("finished ")
+		  console.log(response.result.items)
+		  b = 0
+		  data = response.result.items
+		  while (b < data.length) {
+		      document.getElementById('emails').value = document.getElementById('emails').value + data[b].emailAddress + '\n'
+		      b++
+		  }
+	      });
 	  }
 	  
 	  function appendValues(spreadsheetId, range, valueInputOption, _values, callback) {
@@ -216,17 +229,20 @@
 	  }
 	  
 	  function addUser(file, user) {
-	      gapi.client.drive.permissions.insert({
+	      send = gapi.client.drive.permissions.insert({
 		  'fileId': file,
 		  'resource': {
 		      "role": "writer",
 		      "type": "user",
 		      "value": user
-		  }}).then((response) => {
+		  }
+	      })
+	      console.log('Sent '+file+' to add '+user)
+	      send.then((response) => {
 		  var result = response.result;
 		  console.log("finished "+ user)
 		  console.log(response)
-		  });
+	      });
 //	      request.then(function(response) {console.log(response)});
 	  }
 	  
@@ -234,11 +250,27 @@
 	      vals = document.getElementById('emails').value.split('\n')
 	      console.log(vals)
 	      x = 0
+//	      tmp = ""
 	      while (x < vals.length) {
+	//	  setTimeout(function(){
 		  addUser(getParameterByName('score'),vals[x])
+		  //sleep(1000)
 		  addUser(getParameterByName('mission'),vals[x])
+		  //sleep(1000)
+		      //tmp = tmp + ' ' +vals[x]
 		  x++
 		  appendPre('<b style="color:red">added user at index '+x+'</b>')
+	//	  }, 1000);
+	      }
+//	      addUser(getParameterByName('score'),tmp)
+	  }
+
+	  function sleep(milliseconds) {
+	      var start = new Date().getTime();
+	      for (var i = 0; i < 1e7; i++) {
+		  if ((new Date().getTime() - start) > milliseconds){
+		      break;
+		  }
 	      }
 	  }
 	  
