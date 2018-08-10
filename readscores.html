@@ -346,7 +346,7 @@
       autoScrollTimer = setInterval(function(){
 	  currentTime = Date.now();
 	  setTimeout(function(){
-	      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+/*	      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
 	      
 		 // setTimeout(function(){
 	//	      window.location.reload();
@@ -364,7 +364,7 @@
 		      a = 0
 		  },5000);
 	//	  console.log((window.innerHeight + window.scrollY) >= document.body.offsetHeight);
-	      }
+	      }*/
 	  },3000);
 	  if (prevTime) {
 	      if (!isScrolling) {
@@ -385,7 +385,27 @@
   }
   
   setAutoScroll(20);
-  
+
+a=0
+function getDocHeight() {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+	console.log("bottom");
+	arr = []
+	if (a==0) {
+	    document.getElementById('content').innerHTML=""
+	    listMajors()
+	    a = 1
+	    console.log("reset")
+	}
+    } else {
+	console.log("not bottom")
+	a = 0
+
+    }
+  }
+
+
+var t=setInterval(getDocHeight,1000);
 
 </script>
 
