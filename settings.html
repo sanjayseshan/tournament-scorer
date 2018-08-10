@@ -98,9 +98,9 @@
 
 
 
-	<b>Sign in to the associated Google account to continue:</b><br>
-  <button id="authorize_button" onclick="window.location.href = 'start.html'" class="button button2" style="max-width: 250px; display: none" ><i class="fa fa-toggle-off" aria-hidden="true"></i> Sign in to Google</button>
-  <button id="signout_button" onclick="window.location.href = 'start.html'" class="button button2" style="max-width: 250px; display: none" ><i class="fa fa-toggle-on" aria-hidden="true"></i> Sign out of Google</button>
+	<b>Make sure you have signed in to the associated Google account to continue:</b><br>
+  <button id="authorize_button"  class="button button2" style="max-width: 250px; display: none" ><i class="fa fa-toggle-off" aria-hidden="true"></i> Sign in to Google</button>
+  <button id="signout_button"  class="button button2" style="max-width: 250px; display: none" ><i class="fa fa-toggle-on" aria-hidden="true"></i> Sign out of Google</button>
 
 	<script type="text/javascript">
     	  // Client ID and API key from the Developer Console
@@ -345,7 +345,9 @@
 
 	  function addUser(file, user) {
 	      //alert(global+ "  " + user)
-	      if (user[global].indexOf('gmail') !== -1) {
+//	      if (user[global].indexOf('gmail') !== -1) {
+          if (1==2) {
+
 		  send = gapi.client.drive.permissions.insert({
 		      'fileId': getParameterByName('score'),
 		      'sendNotificationEmails': false,
@@ -378,7 +380,9 @@
 
 
 
-		  if (user[global].indexOf('gmail') !== -1) {
+//		  if (user[global].indexOf('gmail') !== -1) {
+if (1==2) {
+
 		      send = gapi.client.drive.permissions.insert({
 			  'fileId': getParameterByName('mission'),
 			  'sendNotificationEmails': false,
@@ -537,7 +541,7 @@
 	<br>
 	<div id="log"></div>
 	<div id="setup" style="display:none;">
-	  To add teams and set number of competition rounds: <br>
+	  Click on the Setup Panel button to add team names, team numbers, and the number of rounds. A new tab will appear in your browser. When you are done entering the information, just return to this page.<br>
 	<script>  document.write('<button onclick="window.open(\'https://docs.google.com/spreadsheets/d/'+getParameterByName("config")+'/edit\')" class="button button2" style="width: 190px;" ><i class="fa fa-table" aria-hidden="true"></i> &emsp; Setup Panel</button>')</script>
 
 	  <br><br><br>
@@ -545,39 +549,43 @@
 	  <textarea rows="6" cols="50" id="emails"></textarea>
 	  <br>
 	  <br>
-	  Email message to associate with the notification (only sent to those without a Google account):<br>
+	  Email message to associate with the notification:<br>
 	  <textarea rows="20" cols="50" id="note">
-Hello,
+Hello Volunteer,
 
-Thank you for volunteering at the FIRST LEGO League Tournament. This email is inviting you to edit a Google Sheet that can be ignored as it is only to add you to the tournament. You have been sent this, because the tournament flagged you as a non-Google user.
+Thank you for volunteering to referee at our event. You received an invitation to edit documents that will be used at the event. There is no need to make any edits. These are automatically generated when you score teams at the event.
 
-If this is actually a Google Account and we flagged you wrong, you can safely ignore this email.
+We use a Google-based scoring system by FLLTutorials.com at our event. When you arrive at the tournament, you will need to use the email address this message is being sent to in order to score teams.
 
-At the tournament, you will be signing in to a Google Apps account.
+If you don't use a Google email, you will have to connect your existing email account to Google Apps in order to use the scoring tools we use at the event. Follow these simple steps to connect to enable your non-Gmail account to access the Google Apps we will be using:
 
-Because this is not a Google account, please follow the following instructions to connect your existing account to Google Apps: https://mockingbird.marketing/6-steps-set-google-account-gmail-already-existing-email/
+Step 1: Log out of any Gmail account(s) you're currently logged in to, then open https://accounts.google.com.
+Step 2: Click the Create Account link below the gray "sign in with your Google Account" box.
+Step 3: Below the "Choose your username" field, click I prefer to use my current email address link.
+Step 4: Enter your non-Gmail email address you would like to register with Google.
+Step 5: Finish filling out the new account form and accept Google's Privacy Policy and Terms.
+Step 6: Confirm your new account with the email address you provided.
 
-Note: at the tournament, you must use this email, or that of another referee.
-
-
-This tournament is run by the software at tournament.ev3lessons.com!
+Alternatively, if this is an issue, let your Tournament Director know and a generic referee account can be created for your use. Please let us know.
 
 Sincerely,
-
-Your tournament director and the creators of tournament.ev3lessons.com
+Your Tournament Director
 
 	  </textarea>
 	  <br><br>
-    <button onclick="run()" class="button button2" style="width: 190px;" ><i class="fa fa-user-plus" aria-hidden="true"></i> &emsp; Add Users</button>
+    <button onclick="run()" class="button button2" style="width: 190px;" ><i class="fa fa-user-plus" aria-hidden="true"></i> &emsp; Add Referees</button>
 
 
 	  <br>
 	  <div id="content"></div>
-
+<br>
+<br>
+Once you are finished, press the Home button on the menu bar.
 	  <br><br><br><br>
 
 
-	  If you no longer want to keep this tournament (WARNING: There is no going back):
+	  (WARNING: Tournaments can not be restored):
+    <br>
     <button onclick="deleteMe()" class="button button2" style="width: 275px;" ><i class="fa fa-window-close" aria-hidden="true"></i> &emsp; Delete this tournament</button>
 	</div>
       </div>

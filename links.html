@@ -101,10 +101,9 @@ function myFunction() {
 
 
 
-<b>Sign in to the associated Google account to continue:</b><br>
-<button id="authorize_button" onclick="window.location.href = 'start.html'" class="button button2" style="max-width: 250px; display: none" ><i class="fa fa-toggle-off" aria-hidden="true"></i> Sign in to Google</button>
-<button id="signout_button" onclick="window.location.href = 'start.html'" class="button button2" style="max-width: 250px; display: none" ><i class="fa fa-toggle-on" aria-hidden="true"></i> Sign out of Google</button>
-
+<b>Make sure you have signed in to the associated Google account to continue:</b><br>
+<button id="authorize_button" class="button button2" style="max-width: 250px; display: none" ><i class="fa fa-toggle-off" aria-hidden="true"></i> Sign in to Google</button>
+<button id="signout_button" class="button button2" style="max-width: 250px; display: none" ><i class="fa fa-toggle-on" aria-hidden="true"></i> Sign out of Google</button>
 <div id="log"></div>
 <div id="page-content" style="display:none;">
     <div style="display:none;" id="content"></div>
@@ -301,29 +300,20 @@ function appendValues(spreadsheetId, range, valueInputOption, _values, callback)
   Please bookmark this page. Each of these links are unique for your particular tournament.
   <br>
   <br>
-  <b>STEP 1:</b> If you want to fill out the teams list, number of rounds,
-  <script>
-    dir = window.location.hash.substring(1);
-
-  </script>
-    and add guest referees to score, go to the settings panel. <br><script> document.write('<button onclick="window.location.href = \'settings.html\'+q+\'\'" class="button button2" style="width: 170px;" ><i class="fa fa-cog" aria-hidden="true"></i> Settings Panel</button>') </script>
+  <b>STEP 1:</b> Begin by entering your teams, number of rounds, and referee accounts, using the Settings Panel. <br><script> document.write('<button onclick="window.location.href = \'settings.html\'+q+\'\'" class="button button2" style="width: 170px;" ><i class="fa fa-cog" aria-hidden="true"></i> Settings Panel</button>') </script>
 
   <br><br>
-  <b>STEP 2:</b> Referees can now score teams using this special
-  version of the FLLTutorials scorer which gives them a dropdown menu
-  will all the teams the Admin entered in Step 1. Once each referee
-  hits "Save", the score will be added to the Score Displayer in Step
-  3 below.
+  <b>STEP 2:</b> Referees should use the Tournament Scorer button below. Once each referee
+  hits "Save", the score will be added to the Scoreboard in Step 3 below.
 <br>
   <script>
     document.write('<button onclick="window.location.href = \'scorer-nav-if.html\'+datalink+\'\'" class="button button2" style="width: 300px;" ><i class="fa fa-edit" aria-hidden="true"></i> &emsp; Tournament Scorer (for referees)</button>');
   </script>
   <br><br>
-  <b>STEP 3:</b> If you want to display scores for the audience, you
-  can show the content from this page.
+  <b>STEP 3:</b> Use this Scoreboard to display scores for the audience.
 <br>
   <script>
-  document.write('<button onclick="window.location.href = \'readscores.html\'+datalink+\'\'" class="button button2" style="width: 300px;" ><i class="fa fa-desktop" aria-hidden="true"></i> &emsp; Display Score (for audience)</button>');
+  document.write('<button onclick="window.location.href = \'readscores.html\'+datalink+\'\'" class="button button2" style="width: 300px;" ><i class="fa fa-desktop" aria-hidden="true"></i> &emsp; Scoreboard (for audience)</button>');
   </script>
 </p>
 
