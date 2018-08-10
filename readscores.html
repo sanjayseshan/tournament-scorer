@@ -194,7 +194,7 @@
 					  }
 					  
 				      }
-				      document.write("</table></center>")
+				      document.write("</table></center><br><br><br><br><br><br><br>")
 				      document.write('<scr'+''+'ipt>function sortTable() {  var table, rows, switching, i, x, y, shouldSwitch;  table = document.getElementById("sort");  switching = true;  while (switching) {    switching = false;    rows = table.rows;    for (i = 1; i < (rows.length - 1); i++) {      shouldSwitch = false;      x = rows[i].getElementsByTagName("TD")['+(rounds+2)+'];      y = rows[i + 1].getElementsByTagName("TD")['+(rounds+2)+'];      if (Number(x.innerHTML) < Number(y.innerHTML)) {        shouldSwitch = true;        break;      }    }    if (shouldSwitch) {      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);      switching = true;    }  }};sortTable()</scri'+''+'pt>')
 				      
 				      document.write('<script>a=1; while (a<=document.getElementsByClassName("rank").length){document.getElementsByClassName("rank")[a-1].innerHTML = "<b>"+a+"</b>";a++;};document.body.onkeyup = function(e){   if(e.keyCode == 32){	handleManualScroll()    }}</scr'+''+'ipt>')
@@ -302,7 +302,9 @@
 	  setTimeout(function(){
 	      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
 	      
-		  setTimeout(function(){ window.location.reload(); }, 5000);
+		 // setTimeout(function(){
+		      window.location.reload();
+		//		       }, 5000);
 		  console.log((window.innerHeight + window.scrollY) >= document.body.offsetHeight);
 
 	      } else {
