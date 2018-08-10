@@ -462,7 +462,7 @@
    <script type="text/javascript">
       // Client ID and API key from the Developer Console
       var CLIENT_ID = '901774097490-294f3s7it32rh65oodpclij4alj81h2m.apps.googleusercontent.com';
-      var API_KEY = '';
+      var API_KEY = 'AIzaSyDQp4VLGP04s6X6Efp96waVV4NjYvTirYc';
       // Array of API discovery doc URLs for APIs used by the quickstart
       var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
 
@@ -582,7 +582,7 @@
 			      if (range.values.length > 0) {
 				  for (i = 0; i < range.values.length; i++) {
 				      var row = range.values[i];
-				      //		      alert(row)
+				   //   		      alert(row)
 				      loadsave(row)
 				      appendPre(row)
 				  }
@@ -680,8 +680,8 @@ function appendValues(spreadsheetId, range, valueInputOption, _values, callback)
 	      //appendPre('Error: ' + response.result.error.message);
 	      //document.getElementById('log').innerHTML = "Error: Permission Denied."
 	      //		      document.getElementById('setup').style.display = "inline"
-//	      alert('Permission Denied')
-	      alert("Saved. Reload to edit save or go back to load another team/round.")
+	      alert('Permission Denied')
+//	      alert("Saved. Reload to edit save or go back to load another team/round.")
 	  });
 
 	  

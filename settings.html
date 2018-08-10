@@ -346,7 +346,7 @@
 	  function addUser(file, user) {
 	      //alert(global+ "  " + user)
 //	      if (user[global].indexOf('gmail') !== -1) {
-          if (1==2) {
+       /*   if (1==2) {
 
 		  send = gapi.client.drive.permissions.insert({
 		      'fileId': getParameterByName('score'),
@@ -358,7 +358,7 @@
 			  //"emailMessage": document.getElementById('note').value,
 		      }
 		  })
-	      } else {
+	      } else {*/
 		  send = gapi.client.drive.permissions.insert({
 		      'fileId': getParameterByName('score'),
 		      'sendNotificationEmails': true,
@@ -370,7 +370,7 @@
 			  //"emailMessage": document.getElementById('note').value,
 		      }
 		  })
-	      }
+	      //}
 
 	      console.log('Sent '+getParameterByName("score")+' to add '+user[x])
 	      send.then((response) => {
@@ -381,7 +381,7 @@
 
 
 //		  if (user[global].indexOf('gmail') !== -1) {
-if (1==2) {
+/*if (1==2) {
 
 		      send = gapi.client.drive.permissions.insert({
 			  'fileId': getParameterByName('mission'),
@@ -393,9 +393,9 @@ if (1==2) {
 			      //"emailMessage": document.getElementById('note').value,
 			  }
 		      })
-		  } else {
+		  } else {*/
 		      send = gapi.client.drive.permissions.insert({
-			  'fileId': getParameterByName('score'),
+			  'fileId': getParameterByName('mission'),
 			  'sendNotificationEmails': true,
 			  'emailMessage': document.getElementById('note').value,
 			  'resource': {
@@ -405,7 +405,8 @@ if (1==2) {
 			      //"emailMessage": document.getElementById('note').value,
 			  }
 		      })
-		  }		  console.log('Sent '+getParameterByName("mission")+' to add '+user[global])
+		  //		  }		  c
+		  onsole.log('Sent '+getParameterByName("mission")+' to add '+user[global])
 		  send.then((response) => {
 		      var result = response.result;
 		      console.log("finished "+ user[global])
