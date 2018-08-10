@@ -391,12 +391,12 @@ function getDocHeight() {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
 	console.log("bottom");
 	arr = []
-	if (a==0) {
+//	if (a==0) {
 	    document.getElementById('content').innerHTML=""
 	    listMajors()
 	    a = 1
 	    console.log("reset")
-	}
+//	}
     } else {
 	console.log("not bottom")
 	a = 0
@@ -405,7 +405,7 @@ function getDocHeight() {
   }
 
 
-var t=setInterval(getDocHeight,1000);
+var t=setInterval(getDocHeight,10000);
 
 </script>
 
