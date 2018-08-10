@@ -14,12 +14,21 @@
       }
       
     </script>
+    <style>   * {  font-family: sans-serif; } </style>
   </head>
   <body>
     <button id="authorize_button" style="display: none;">Sign in</button>
     <button id="signout_button" style="display: none;">Sign Out</button>
+
+    <title>Scoreboard</title>
+
+<center>
+    <img src='ev3lessons.png'> <img style='height:200px;width:auto' src='FLLlogo.png'>
+</center>
     
     <div id="content"></div>
+
+    
     
     <script type="text/javascript">
       // Client ID and API key from the Developer Console
@@ -109,11 +118,16 @@
        * Print the names and majors of students in a sample spreadsheet:
        * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
        */
+
+      arr = []
+      function appendArr(data) {
+	  arr.push(data);
+      }
       function listMajors() {
 	  
 	  
 	  
-	  
+//	  alert('test')
 	  gapi.client.sheets.spreadsheets.values.get({
 	      spreadsheetId: '11eecocqxnYIqsYY-24pGfqPwhAEanU9mvCK4G43Abj0',
 	      range: 'A:D',
@@ -143,7 +157,7 @@
 			      }).then(function(response) {
 				  var range = response.result;
 				  if (range.values.length > 0) {
-				      document.write("<center>    <title>Scoreboard</title><img src='ev3lessons.png'> <img style='height:200px;width:auto' src='FLLlogo.png'><h1 style='font-size:250%'>"+getParameterByName('tourn')+" Scoreboard</h1><p>Press space to pause auto-scrolling</p>");
+				      appendPre("<center>    <h1 style='font-size:250%'>"+getParameterByName('tourn')+" Scoreboard</h1>");
 				      
 				      for (i = 0; i < range.values.length; i++) {
 					  var row = range.values[i];
@@ -156,7 +170,7 @@
 						  tmp = tmp + "<td>Round "+x+"</td>"
 						  x++
 					      }
-					      document.write("<table style='font-size:200%;border-collapse: collapse;' id='sort' border='1'><tr style='background-color: yellow'><td>Rank</td><td>Team</td>"+tmp+"<td>High Score</td></tr>")
+					      appendArr("<table style='font-size:200%;border-collapse: collapse;' id='sort' border='1'><tr style='background-color: yellow'><td>Rank</td><td>Team</td>"+tmp+"<td>High Score</td></tr>")
 					      
 					  }
 					  
@@ -166,7 +180,7 @@
 					      //alert(row)
 					      // Print columns A and E, which correspond to indices 0 and 4.
 					      //              appendPre(row[0] + ': <a href="links.html?tourn=' + row[0] + '&score='+row[1]+'&mission='+row[2]+'&config='+row[3]+'">link</a>');
-					      //				document.write(row[0]+" "+row[1]+"<br>")
+					      //				appendPre(row[0]+" "+row[1]+"<br>")
 					      for (b = 0; b < rangesc.values.length; b++) {
 						  var rowsc = rangesc.values[b];
 						  //  alert(b + " " + parseInt(row[1])+ " " + rowsc[0])
@@ -185,7 +199,7 @@
 							  tmp = tmp + "<td>" + rowscnum[x]+"</td>"
 							  x++
 						      }
-						      document.write('<td><text class="rank"></text></td><td>'+row[1] +' - '+row[0]+'</td> '+tmp+'<td style="font-weight:bold">'+Math.max.apply(null,rowscnum)+'</td></tr>');
+						      appendArr('<td><text class="rank"></text></td><td>'+row[1] +' - '+row[0]+'</td> '+tmp+'<td style="font-weight:bold">'+Math.max.apply(null,rowscnum)+'</td></tr>');
 						  }
 						  
 						  
@@ -194,11 +208,17 @@
 					  }
 					  
 				      }
-				      document.write("</table></center><br><br><br><br><br><br><br>")
-				      document.write('<scr'+''+'ipt>function sortTable() {  var table, rows, switching, i, x, y, shouldSwitch;  table = document.getElementById("sort");  switching = true;  while (switching) {    switching = false;    rows = table.rows;    for (i = 1; i < (rows.length - 1); i++) {      shouldSwitch = false;      x = rows[i].getElementsByTagName("TD")['+(rounds+2)+'];      y = rows[i + 1].getElementsByTagName("TD")['+(rounds+2)+'];      if (Number(x.innerHTML) < Number(y.innerHTML)) {        shouldSwitch = true;        break;      }    }    if (shouldSwitch) {      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);      switching = true;    }  }};sortTable()</scri'+''+'pt>')
+
+				
+				      appendArr("</table></center><br><br><br><br><br><br><br>")
+				      appendPre(arr)
+
+				      sortTable()
+				      a=1; while (a<=document.getElementsByClassName("rank").length){document.getElementsByClassName("rank")[a-1].innerHTML = "<b>"+a+"</b>";a++;};document.body.onkeyup = function(e){   if(e.keyCode == 32){	handleManualScroll()    }}
+
+				 //     appendPre('<scr'+''+'ipt>sortTable()</scri'+''+'pt>')
 				      
-				      document.write('<script>a=1; while (a<=document.getElementsByClassName("rank").length){document.getElementsByClassName("rank")[a-1].innerHTML = "<b>"+a+"</b>";a++;};document.body.onkeyup = function(e){   if(e.keyCode == 32){	handleManualScroll()    }}</scr'+''+'ipt>')
-				      	document.write(' <style>   * {  font-family: sans-serif; } </style>')
+				   //   appendPre('<script>a=1; while (a<=document.getElementsByClassName("rank").length){document.getElementsByClassName("rank")[a-1].innerHTML = "<b>"+a+"</b>";a++;};document.body.onkeyup = function(e){   if(e.keyCode == 32){	handleManualScroll()    }}</scr'+''+'ipt>')
 
 		
 				      	
@@ -227,7 +247,31 @@
 					    appendPre('Error: ' + response.result.error.message);
 					});
       					}
-					
+
+					function sortTable() {
+					    var table, rows, switching, i, x, y, shouldSwitch;
+					    table = document.getElementById("sort");
+					    switching = true;
+					    while (switching) {
+						switching = false;
+						rows = table.rows;
+						for (i = 1; i < (rows.length - 1); i++) {
+						    shouldSwitch = false;
+						    x = rows[i].getElementsByTagName("TD")[(rounds+2)];
+						    y = rows[i + 1].getElementsByTagName("TD")[(rounds+2)];
+						    if (Number(x.innerHTML) < Number(y.innerHTML)) {
+							shouldSwitch = true;
+							break;
+						    }
+						}
+						if (shouldSwitch) {
+						    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+						    switching = true;
+						}
+					    }
+					};
+				      
+
 					function appendValues(spreadsheetId, range, valueInputOption, _values, callback) {
 					    var values = _values
 					    var body = {
@@ -283,14 +327,15 @@
       if (restartTimer) {
 	  clearTimeout(restartTimer);
       }
-   /*   restartTimer = setTimeout(() => {
+      restartTimer = setTimeout(() => {
 	  prevTime = null;
 	  setAutoScroll();
-      }, 50);*/
+      }, 50);
   }
 
 
   function setAutoScroll(newValue) {
+      a = 0
       if (newValue) {
 	  autoScrollSpeed = speedFactor * newValue;
       }
@@ -303,11 +348,20 @@
 	      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
 	      
 		 // setTimeout(function(){
-		      window.location.reload();
-		//		       }, 5000);
+	//	      window.location.reload();
+		  //		       }, 5000);
+		  arr = []
+		  if (a==0) {
+		      document.getElementById('content').innerHTML=""
+		      listMajors()
+		      a = 1
+		  }
 		  console.log((window.innerHeight + window.scrollY) >= document.body.offsetHeight);
-
+		      
 	      } else {
+		  //setTimeout(function(){
+		      a = 0
+		  //}, 2000);
 	//	  console.log((window.innerHeight + window.scrollY) >= document.body.offsetHeight);
 	      }
 	  },3000);
