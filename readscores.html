@@ -127,16 +127,18 @@
 		      
 		      if (row[0] == getParameterByName('tourn')) {
 			  datalink = '?tourn=' + row[0] + '&score='+row[1]+'&mission='+row[2]+'&config='+row[3]
+
+			  val=row
 			  
 			  
 			  gapi.client.sheets.spreadsheets.values.get({
-			      spreadsheetId: row[1],
+			      spreadsheetId: val[1],
 			      range: 'A:Z',
 			  }).then(function(response) {
 			      var rangesc = response.result;  
 			      
 			      gapi.client.sheets.spreadsheets.values.get({
-				  spreadsheetId: row[3],
+				  spreadsheetId: val[3],
 				  range: 'A:Z',
 			      }).then(function(response) {
 				  var range = response.result;
