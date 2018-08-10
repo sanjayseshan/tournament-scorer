@@ -1,6 +1,5 @@
-<html>
 <head>
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="style-pre.css">
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="css/accordian.css">
@@ -8,84 +7,44 @@
 <link rel="stylesheet" href="w3.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- 
-<title>Tournament Home</title>
- 
+
+<title>Tournaments</title>
+
 </head>
 <body>
   <div style="max-width: 1024px;margin:0 auto;">
-  <!--  <script> 
-    $(function(){
-      $("#header").load("header.html"); 
-    });
-    </script> -->
-  <div class="topnav" id="myTopnav" style="width:100%">
-
     <script>
-               function getParameterByName(name, url) {
-            if (!url) url = window.location.href;
-            name = name.replace(/[\[\]]/g, "\\$&");
-            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-            results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, " "));
-          }
-
-    q = window.location.search
-    document.write('\
-    <a href="links.html'+q+'">Home</a>\
-  <a href="scorer-nav-if.html'+q+'">Scorer</a>\
-    <a href="readscores.html'+q+'">Scoreboard</a>\
-    <a href="users.html'+q+'">User Manager</a>\
-    <a href="https://docs.google.com/spreadsheets/d/'+getParameterByName('config')+'/edit">Setup Panel</a>\
-  ')
+    $(function(){
+      $("#header").load("header.html");
+    });
     </script>
-    <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
-</div>
-<script>
-function myFunction() {
-    var x = document.getElementById("myTopnav");
-    if (x.className === "topnav") {
-        x.className += " responsive";
-    } else {
-        x.className = "topnav";
-    }
-}
-</script>
      <div id="header"></div><br>
   <section style="padding: 5px 5px 5px 15px;">
-<h2>
-  <script>
- 
-  document.write(getParameterByName('tourn'));</script>
 
- Tournament Dashboard
-</h2>
-
-    
-</section><br><section> <div class="text-body"  style="font-size: 15px;">
-
-      
+  <h2>EV3Lessons Full Tournament List</h2>
+  </section><br><section> <div class="text-body" style="font-size: 15px;">
 
 
-<b>Sign in to the associated Google account to continue:</b><br>
+<p style="font-size: 150%;">
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+<body>
 <button id="authorize_button" style="display: none;">Sign in</button>
-<button id="signout_button" style="display: none;">Sign Out</button>
+<button id="signout_button" style="display: none;">Sign Out</button><br>
+If you have forgotten the name of your tournament, find yours in the list below and press "link" next to its name.
 
-<div id="page-content" style="display:none;">
-    <div id="content"></div>
 
    <script type="text/javascript">
       // Client ID and API key from the Developer Console
       var CLIENT_ID = '901774097490-294f3s7it32rh65oodpclij4alj81h2m.apps.googleusercontent.com';
-      var API_KEY = 'AIzaSyDQp4VLGP04s6X6Efp96waVV4NjYvTirYc';
+  var API_KEY = 'AIzaSyDQp4VLGP04s6X6Efp96waVV4NjYvTirYc';
+
       // Array of API discovery doc URLs for APIs used by the quickstart
-      var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
+  var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4","https://www.googleapis.com/discovery/v1/apis/drive/v2/rest"];
 
       // Authorization scopes required by the API; multiple scopes can be
       // included, separated by spaces.
-      var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
+      var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly https://spreadsheets.google.com/feeds https://www.googleapis.com/auth/drive.metadata.readonly https://www.googleapis.com/auth/drive.file";
 
       var authorizeButton = document.getElementById('authorize_button');
       var signoutButton = document.getElementById('signout_button');
@@ -126,12 +85,11 @@ function myFunction() {
         if (isSignedIn) {
           authorizeButton.style.display = 'none';
           signoutButton.style.display = 'block';
-	    listMajors();
-	    document.getElementById('page-content').style.display = "block"
         } else {
           authorizeButton.style.display = 'block';
           signoutButton.style.display = 'none';
         }
+          listMajors();
       }
 
       /**
@@ -165,7 +123,8 @@ function myFunction() {
        * Print the names and majors of students in a sample spreadsheet:
        * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
        */
-      function listMajors() {
+  function listMajors() {
+      document.getElementById('content').innerHTML = ""
         gapi.client.sheets.spreadsheets.values.get({
           spreadsheetId: '11eecocqxnYIqsYY-24pGfqPwhAEanU9mvCK4G43Abj0',
           range: 'A:D',
@@ -175,10 +134,7 @@ function myFunction() {
             for (i = 0; i < range.values.length; i++) {
               var row = range.values[i];
               // Print columns A and E, which correspond to indices 0 and 4.
-		//              appendPre(row[0] + ': <a href="links.html?tourn=' + row[0] + '&score='+row[1]+'&mission='+row[2]+'&config='+row[3]+'">link</a>');
-		if (row[0] == getParameterByName('tourn')) {
-		    datalink = '?tourn=' + row[0] + '&score='+row[1]+'&mission='+row[2]+'&config='+row[3]
-		}
+              appendPre(row[0] + ': <a href="links.html?tourn=' + row[0] + '&score='+row[1]+'&mission='+row[2]+'&config='+row[3]+'">link</a>');
             }
           } else {
             appendPre('No data found.');
@@ -196,18 +152,129 @@ function appendValues(spreadsheetId, range, valueInputOption, _values, callback)
   gapi.client.sheets.spreadsheets.values.append({
     spreadsheetId: spreadsheetId,
     range: range,
-    valueInputOption: 'USER_ENTERED',
+    valueInputOption: valueInputOption,
     resource: body
   }).then((response) => {
     var result = response.result;
     console.log(`${result.updates.updatedCells} cells appended.`)
       document.getElementById('content').innerHTML = ""
       listMajors()
-      
+
   });
 }
 
-   
+function zeros(dimensions) {
+    var array = [];
+
+    for (var i = 0; i < dimensions[0]; ++i) {
+        array.push(dimensions.length == 1 ? 0 : zeros(dimensions.slice(1)));
+    }
+
+    return array;
+}
+
+function makeSheet() {
+    var spreadsheetBody = {
+	//	    "title":"FLLTutorials.com FLL Into Orbit Scorer"
+	// TODO: Add desired properties to the request body.
+    };
+
+    var request = gapi.client.sheets.spreadsheets.create({}, spreadsheetBody);
+    request.then(function(response) {
+	// TODO: Change code below to process the `response` object:
+	sheet1 = response.result;
+	console.log(sheet1);
+	var spreadsheetBody = {
+	    //	    "title":"FLLTutorials.com FLL Into Orbit Scorer"
+	    // TODO: Add desired properties to the request body.
+	};
+
+	var request = gapi.client.sheets.spreadsheets.create({}, spreadsheetBody);
+	request.then(function(response) {
+	    // TODO: Change code below to process the `response` object:
+	    sheet2 = response.result;
+	    console.log(sheet2);
+	    var spreadsheetBody = {
+		//	    "title":"FLLTutorials.com FLL Into Orbit Scorer"
+		// TODO: Add desired properties to the request body.
+	    };
+
+	    var request = gapi.client.sheets.spreadsheets.create({}, spreadsheetBody);
+	    request.then(function(response) {
+		// TODO: Change code below to process the `response` object:
+
+		sheet3 = response.result;
+		console.log(sheet3);
+
+
+		appendValues(sheet3["spreadsheetId"],'A:A', 'USER_ENTERED', [["# of rounds:","3"],
+			  ["Team Name:", "Team #:"],
+			  ["team e.g. 1", "2001"],
+			  ["team e.g. 2", "2002"],
+									     ["team e.g. 3", "2003"]])
+
+
+		appendValues(sheet1["spreadsheetId"],'A:A', 'USER_ENTERED', zeros([200,7]))
+		appendValues(sheet2["spreadsheetId"],'A:A', 'USER_ENTERED', zeros([200,7]))
+
+		insertPermission(sheet1["spreadsheetId"])
+		insertPermission(sheet3["spreadsheetId"])
+
+		nameSheet('Score Sheet',sheet1["spreadsheetId"])
+		nameSheet('Mission History Sheet',sheet2["spreadsheetId"])
+		nameSheet('Config Sheet',sheet3["spreadsheetId"])
+
+
+		appendValues('11eecocqxnYIqsYY-24pGfqPwhAEanU9mvCK4G43Abj0','A:A', 'USER_ENTERED', [[document.getElementById('text').value,sheet1["spreadsheetId"],sheet2["spreadsheetId"],sheet3["spreadsheetId"]]])
+
+
+
+
+	    }, function(reason) {
+		console.error('error: ' + reason.result.error.message);
+	    });
+	}, function(reason) {
+	    console.error('error: ' + reason.result.error.message);
+	});
+    }, function(reason) {
+	console.error('error: ' + reason.result.error.message);
+    });
+  }
+
+  function nameSheet(name, sheet) {
+      var requests = [];
+      // Change the spreadsheet's title.
+      requests.push({
+	  updateSpreadsheetProperties: {
+	      properties: {
+		  title: name
+	      },
+	      fields: 'title'
+      }
+      });
+      var batchUpdateRequest = {requests: requests}
+
+      gapi.client.sheets.spreadsheets.batchUpdate({
+	  spreadsheetId: sheet,
+	  resource: batchUpdateRequest
+      }).then((response) => {
+	  var findReplaceResponse = response.result.replies[1].findReplace;
+	  console.log(`${findReplaceResponse.occurrencesChanged} replacements made.`);
+      });
+  }
+
+
+function insertPermission(file){
+    request = gapi.client.drive.permissions.insert({
+        'fileId': file,
+        'resource': {
+            "withLink": true,
+            "role": "reader",
+            "type": "anyone"
+        }
+    })
+    request.then(function(response) {console.log(response)});
+}
 
     </script>
 
@@ -215,49 +282,20 @@ function appendValues(spreadsheetId, range, valueInputOption, _values, callback)
       onload="this.onload=function(){};handleClientLoad()"
       onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
+<br>
+    
+<b>Load Tournament:</b>
+    <div id="content"></div>
 
+</body>
 
-
-
-<p style="font-size: 150%;">
-  Please bookmark this page. Each of these links are unique for your particular tournament.
-  <br>
-  <br>
-  <b>STEP 1:</b> Fill out the teams list and number of rounds in the
-  <script>
-    dir = window.location.hash.substring(1);
-    document.write('<a href="https://docs.google.com/spreadsheets/d/'+getParameterByName('config')+'/edit">Tournament Director Setup Panel</a>. ');
-  </script>
-    You can add guest referees to score in the <script> document.write('<a href="users.html'+q+'">User Manager</a>') </script>.
-  <br><br>
-  <b>STEP 2:</b> Referees can now score teams using this special
-  version of the EV3Lessons scorer which gives them a dropdown menu
-  will all the teams the Admin entered in Step 1. Once each referee
-  hits "Save", the score will be added to the Score Displayer in Step
-  3 below.
-
-  <script>
-    document.write('<button onclick="window.location.href = \'scorer-nav-if.html\'+datalink+\'\'">Tournament Scorer for Referee </button>');
-  </script>
-  <br><br>
-  <b>STEP 3:</b> If you want to display scores for the audience, you
-  can show the content from this page.
-
-  <script>
-  document.write('<button onclick="window.location.href = \'readscores.html\'+datalink+\'\'">Score Displayer for Audience</button><br><br>');
-  </script>
-</p>
-
-
-
-</div>      
 </div>
 
 </section>
 <br>
-    <script> 
+    <script>
     $(function(){
-      $("#footer").load("footer.html"); 
+      $("#footer").load("footer.html");
     });
     </script>
      <div id="footer"></div>
@@ -276,4 +314,3 @@ function appendValues(spreadsheetId, range, valueInputOption, _values, callback)
   ga('send', 'pageview');
 
 </script>
-</html>

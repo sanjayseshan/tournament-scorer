@@ -273,6 +273,48 @@
 		  }
 	      }
 	  }
+
+   function deleteMe() {
+	  gapi.client.sheets.spreadsheets.values.get({
+          spreadsheetId: '11eecocqxnYIqsYY-24pGfqPwhAEanU9mvCK4G43Abj0',
+          range: 'A:D',
+	  }).then(function(response) {
+          var range = response.result;
+	      if (range.values.length > 0) {
+		  for (i = 0; i < range.values.length; i++) {
+		      var row = range.values[i];
+		      // Print columns A and E, which correspond to indices 0 and 4.
+		      //              appendPre(row[0] + ': <a href="links.html?tourn=' + row[0] + '&score='+row[1]+'&mission='+row[2]+'&config='+row[3]+'">link</a>');
+		      if (row[0] == getParameterByName('tourn')) {
+			  var values = [
+			      [
+				  "","","","","",""
+			      ],
+			  ];
+			  var body = {
+			      values: values
+			  };
+			  gapi.client.sheets.spreadsheets.values.update({
+			      spreadsheetId: '11eecocqxnYIqsYY-24pGfqPwhAEanU9mvCK4G43Abj0',
+			      range: 'A'+(i+1)+':Z'+(i+1),
+			      valueInputOption: 'USER_ENTERED',
+			      resource: body
+			  }).then((response) => {
+			      var result = response.result;
+			      console.log(`${result.updatedCells} cells updated.`);
+			      alert('Deleted...You can now safely remove the following sheets in your drive: Score Sheet, Mission History Sheet, & Config Sheet.')
+			      window.location.href = 'index.html'
+			  });
+		      }
+		  }
+	      } else {
+		  appendPre('No data found.');
+	      }
+	  }, function(response) {
+	      appendPre('Error: ' + response.result.error.message);
+	  });
+	  
+      }
 	  
 	</script>
 	
@@ -291,6 +333,12 @@
 	
 	<br>
 		<div id="content"></div>
+
+		<br><br><br><br>
+
+
+		If you no longer want to keep this tournament (WARNING: There is no going back): 
+  <button onclick="deleteMe()">Delete this tournament</button>
 
       </div>
       
