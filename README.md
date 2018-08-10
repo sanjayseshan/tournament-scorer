@@ -4,4 +4,5 @@ This is a version of the FLLTutorials/EV3Lessons INTO Orbit Scorer that is desig
 
 It uses Google Sheets/Drive to manage scores and organize referees.
 
-This is version EV3Lessons Tournament scoring system v4.0.1 and runs off EV3Lessons Scorer v3.3.1.
+This is version EV3Lessons Tournament scoring system v4.0.2 and runs off EV3Lessons Scorer v3.3.1.
+
