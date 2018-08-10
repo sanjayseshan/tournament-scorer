@@ -43,6 +43,7 @@
 
 </head>
 <body>
+  <img src="loading.gif" id="loading-gif" width="100" height="100" style="display:none; position:fixed; left:50%; top:50%; background-color: white;">
   <div style="max-width: 1024px;margin:0 auto;">
     <script>
       $(function(){
@@ -250,7 +251,8 @@
 
 
 
-				  alert('Tournament is being created. Once done we will automatically redirect you to your dashboard. It may take up to 30 seconds.')
+			  alert('Tournament is being created. Once done we will automatically redirect you to your dashboard. It may take up to 30 seconds.')
+			  document.getElementById('loading-gif').style.display = "inline";
 
 				  var request = gapi.client.sheets.spreadsheets.create({}, spreadsheetBody);
 				  request.then(function(response) {
