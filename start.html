@@ -7,40 +7,30 @@
 <link rel="stylesheet" href="w3.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- 
+
 <title>Start</title>
- 
+
 </head>
 <body>
   <div style="max-width: 1024px;margin:0 auto;">
-    <script> 
+    <script>
     $(function(){
-      $("#header").load("header.html"); 
+      $("#header").load("header.html");
     });
     </script>
      <div id="header"></div><br>
   <section style="padding: 5px 5px 5px 15px;">
 
-  <h2>EV3Lessons Tournament Scoring System v<script>
-function textFileToArray(filename) {
-    var reader = (window.XMLHttpRequest != null )
-               ? new XMLHttpRequest()
-               : new ActiveXObject("Microsoft.XMLHTTP");
-    reader.open("GET", filename, false );
-    reader.send();
-    return reader.responseText.split(/\r\n|\n|\r/);  //split(/(\r\n|\n)/g)
-}
-document.write(textFileToArray('version.txt')[0]);
-  </script></h2>
+  <h2>EV3Lessons Tournament Scoring System</h2>
   </section><br><section> <div class="text-body" style="font-size: 15px;">
 
-      
+
 <p style="font-size: 150%;">
 <script src='https://www.google.com/recaptcha/api.js'></script>
 
 <body>
 
-To begin, sign in to a Google Account that will become the account you use to sign in to this tournament. We reccomend that you create a new account if you are uncomfortable with signing into your referees devices with your account.<br> 
+To begin, sign in to a Google Account that will become the account you use to sign in to this tournament. We reccomend that you create a new account if you are uncomfortable with signing into your referees devices with your account.<br>
 <button id="authorize_button" style="display: none;">Sign in</button>
 <button id="signout_button" style="display: none;">Sign Out</button>
 
@@ -174,7 +164,7 @@ function appendValues(spreadsheetId, range, valueInputOption, _values, callback)
     console.log(`${result.updates.updatedCells} cells appended.`)
       document.getElementById('content').innerHTML = ""
       listMajors()
-      
+
   });
 }
 
@@ -193,7 +183,7 @@ function makeSheet() {
 	//	    "title":"FLLTutorials.com FLL Into Orbit Scorer"
 	// TODO: Add desired properties to the request body.
     };
-    
+
     var request = gapi.client.sheets.spreadsheets.create({}, spreadsheetBody);
     request.then(function(response) {
 	// TODO: Change code below to process the `response` object:
@@ -203,7 +193,7 @@ function makeSheet() {
 	    //	    "title":"FLLTutorials.com FLL Into Orbit Scorer"
 	    // TODO: Add desired properties to the request body.
 	};
-	
+
 	var request = gapi.client.sheets.spreadsheets.create({}, spreadsheetBody);
 	request.then(function(response) {
 	    // TODO: Change code below to process the `response` object:
@@ -213,14 +203,14 @@ function makeSheet() {
 		//	    "title":"FLLTutorials.com FLL Into Orbit Scorer"
 		// TODO: Add desired properties to the request body.
 	    };
-	    
+
 	    var request = gapi.client.sheets.spreadsheets.create({}, spreadsheetBody);
 	    request.then(function(response) {
 		// TODO: Change code below to process the `response` object:
 
 		sheet3 = response.result;
 		console.log(sheet3);
-			  
+
 
 		appendValues(sheet3["spreadsheetId"],'A:A', 'USER_ENTERED', [["# of rounds:","3"],
 			  ["Team Name:", "Team #:"],
@@ -238,13 +228,13 @@ function makeSheet() {
 		nameSheet('Score Sheet',sheet1["spreadsheetId"])
 		nameSheet('Mission History Sheet',sheet2["spreadsheetId"])
 		nameSheet('Config Sheet',sheet3["spreadsheetId"])
-		
+
 
 		appendValues('11eecocqxnYIqsYY-24pGfqPwhAEanU9mvCK4G43Abj0','A:A', 'USER_ENTERED', [[document.getElementById('text').value,sheet1["spreadsheetId"],sheet2["spreadsheetId"],sheet3["spreadsheetId"]]])
 
-			
-		
-		
+
+
+
 	    }, function(reason) {
 		console.error('error: ' + reason.result.error.message);
 	    });
@@ -268,7 +258,7 @@ function makeSheet() {
       }
       });
       var batchUpdateRequest = {requests: requests}
-      
+
       gapi.client.sheets.spreadsheets.batchUpdate({
 	  spreadsheetId: sheet,
 	  resource: batchUpdateRequest
@@ -314,9 +304,9 @@ If your tournament ALREADY exists, press "link" next to your tournament name bel
 
 </section>
 <br>
-    <script> 
+    <script>
     $(function(){
-      $("#footer").load("footer.html"); 
+      $("#footer").load("footer.html");
     });
     </script>
      <div id="footer"></div>
