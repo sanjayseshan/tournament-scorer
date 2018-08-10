@@ -17,17 +17,18 @@
     <style>   * {  font-family: sans-serif; } </style>
   </head>
   <body>
-    <button id="authorize_button" style="display: none;">Sign in</button>
-    <button id="signout_button" style="display: none;">Sign Out</button>
-
+    <div style="display:none">
+      <button id="authorize_button" style="display: none;">Sign in</button>
+      <button id="signout_button" style="display: none;">Sign Out</button>
+    </div>
     <title>Scoreboard</title>
 
 <center>
     <img src='ev3lessons.png'> <img style='height:200px;width:auto' src='FLLlogo.png'>
 </center>
-    
+    <center>
     <div id="content"></div>
-
+</center>
     
     
     <script type="text/javascript">
@@ -359,9 +360,9 @@
 		  console.log((window.innerHeight + window.scrollY) >= document.body.offsetHeight);
 		      
 	      } else {
-		  //setTimeout(function(){
+		  setTimeout(function(){
 		      a = 0
-		  //}, 2000);
+		  },5000);
 	//	  console.log((window.innerHeight + window.scrollY) >= document.body.offsetHeight);
 	      }
 	  },3000);
