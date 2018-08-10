@@ -648,8 +648,12 @@ function appendValues(spreadsheetId, range, valueInputOption, _values, callback)
 	  }).then((response) => {
 	      var result = response.result;
 	      console.log(`${result.updatedCells} cells updated.`);
-	  });
-	  
+	  }, function(response) {
+	      //appendPre('Error: ' + response.result.error.message);
+	      //document.getElementById('log').innerHTML = "Error: Permission Denied."
+	      //		      document.getElementById('setup').style.display = "inline"
+	      alert('Permission Denied')
+	  });	  
       
 
 	  var values = [
@@ -670,9 +674,15 @@ function appendValues(spreadsheetId, range, valueInputOption, _values, callback)
 	  }).then((response) => {
 	      var result = response.result;
 	      console.log(`${result.updatedCells} cells updated.`);
+	      alert("Saved. Reload to edit save or go back to load another team/round.")
+
+	  }, function(response) {
+	      //appendPre('Error: ' + response.result.error.message);
+	      //document.getElementById('log').innerHTML = "Error: Permission Denied."
+	      //		      document.getElementById('setup').style.display = "inline"
+	      alert('Permission Denied')
 	  });
 
-      alert("Saved. Reload to edit save or go back to load another team/round.")
 	  
       }
 
