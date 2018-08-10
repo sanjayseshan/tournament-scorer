@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   
-  <title>User Management</title>
+  <title>Settings</title>
   
 </head>
 <body>
@@ -35,8 +35,7 @@
 	<a href="links.html'+q+'">Home</a>\
 	<a href="scorer-nav-if.html'+q+'">Scorer</a>\
 	<a href="readscores.html'+q+'">Scoreboard</a>\
-	<a href="users.html'+q+'">User Manager</a>\
-	<a href="https://docs.google.com/spreadsheets/d/'+getParameterByName('config')+'/edit">Setup Panel</a>\
+	<a href="settings.html'+q+'">Settings</a>\
 	')
       </script>
       <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
@@ -449,6 +448,10 @@
 	<br>
 	<div id="log"></div>
 	<div id="setup" style="display:none;">
+	  To add teams and set number of competition rounds: <br>
+	<script>  document.write('<button onclick="window.open(\'https://docs.google.com/spreadsheets/d/'+getParameterByName("config")+'/edit\')" class="button button2" style="width: 170px;" ><i class="fa fa-table" aria-hidden="true"></i> Setup Panel</button>')</script>
+
+	  <br><br><br>
 	  Add the Google emails of each referee below (1 per line):<br>
 	  <textarea rows="6" cols="50" id="emails"></textarea>
 	  <br>
