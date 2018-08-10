@@ -64,10 +64,10 @@
 	}
 	document.write('\
 	<a href="links.html'+q+'">Home</a>\
-	<a href="scorer-nav-if.html'+q+'">Scorer</a>\
-	<a href="readscores.html'+q+'">Scoreboard</a>\
-	<a href="settings.html'+q+'">Settings</a>\
-	')
+	<a class="si-only" style="display:none" href="scorer-nav-if.html'+q+'">Scorer</a>\
+	<a class="si-only" style="display:none" href="readscores.html'+q+'">Scoreboard</a>\
+	<a class="si-only" style="display:none" href="settings.html'+q+'">Settings</a>\
+      ')
       </script>
       <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
@@ -149,7 +149,7 @@
 	   *  Called when the signed in status changes, to update the UI
 	   *  appropriately. After a sign-in, the API is called.
 	   */
-	  function updateSigninStatus(isSignedIn) {
+	/*  function updateSigninStatus(isSignedIn) {
 	      if (isSignedIn) {
 		  authorizeButton.style.display = 'none';
 		  signoutButton.style.display = 'block';
@@ -185,7 +185,65 @@
 		  signoutButton.style.display = 'none';
 		  document.getElementById('setup').style.display = "none"
 	      }
-	  }
+	      }*/
+
+      function updateSigninStatus(isSignedIn) {
+        if (isSignedIn) {
+          authorizeButton.style.display = 'none';
+          signoutButton.style.display = 'block';
+	    listMajors();
+	 		  var values = [
+		      [
+			  "0"
+		      ],
+		      // Additional rows ...
+		  ];
+		  var body = {
+		      values: values
+		  };
+		  gapi.client.sheets.spreadsheets.values.update({
+		      spreadsheetId: getParameterByName('score'),
+		      range: 'I1:I1',
+		      valueInputOption: "USER_ENTERED",
+		      resource: body
+		  }).then((response) => {
+		      var result = response.result;
+		      console.log(`${result.updatedCells} cells updated.`);
+		      document.getElementById('setup').style.display = "inline"
+		      document.getElementById('log').innerHTML = ""
+	//	      document.getElementById('myTopnav').style.display = "inline"
+
+		      var all = document.getElementsByClassName('si-only');
+		      for (var i = 0; i < all.length; i++) {
+			  all[i].style.display = 'inline';
+		      }
+		      
+		  }, function(response) {
+		      appendPre('Error: ' + response.result.error.message);
+		      document.getElementById('log').innerHTML = "Error: Permission Denied."
+		      var all = document.getElementsByClassName('si-only');
+		      for (var i = 0; i < all.length; i++) {
+			  all[i].style.display = 'none';
+		      }
+
+		      //document.getElementById('myTopNav').style.display = "none"
+		  });
+   
+	//    document.getElementById('page-content').style.display = "block"
+        } else {
+          authorizeButton.style.display = 'block';
+          signoutButton.style.display = 'none';
+	    document.getElementById('setup').style.display = "none"
+	 //   document.getElementById('myTopnav').style.display = "none"
+
+	    var all = document.getElementsByClassName('si-only');
+	    for (var i = 0; i < all.length; i++) {
+		all[i].style.display = 'none';
+	    }
+
+        }
+      }
+
 
 	  /**
 	   *  Sign in the user upon button click.

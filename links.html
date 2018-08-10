@@ -51,7 +51,7 @@
       $("#header").load("header.html");
     });
     </script> -->
-  <div class="topnav" id="myTopnav" style="width:100%">
+  <div class="topnav" id="myTopnav" style="width:100%;">
 
     <script>
                function getParameterByName(name, url) {
@@ -67,10 +67,12 @@
     q = window.location.search
 	document.write('\
 	<a href="links.html'+q+'">Home</a>\
-	<a href="scorer-nav-if.html'+q+'">Scorer</a>\
-	<a href="readscores.html'+q+'">Scoreboard</a>\
-	<a href="settings.html'+q+'">Settings</a>\
-	')    </script>
+	<a class="si-only" style="display:none" href="scorer-nav-if.html'+q+'">Scorer</a>\
+	<a class="si-only" style="display:none" href="readscores.html'+q+'">Scoreboard</a>\
+	<a class="si-only" style="display:none" href="settings.html'+q+'">Settings</a>\
+      ')
+
+</script>
     <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
 </div>
 <script>
@@ -177,10 +179,22 @@ function myFunction() {
 		      console.log(`${result.updatedCells} cells updated.`);
 		      document.getElementById('page-content').style.display = "inline"
 		      document.getElementById('log').innerHTML = ""
+	//	      document.getElementById('myTopnav').style.display = "inline"
+
+		      var all = document.getElementsByClassName('si-only');
+		      for (var i = 0; i < all.length; i++) {
+			  all[i].style.display = 'inline';
+		      }
+		      
 		  }, function(response) {
 		      appendPre('Error: ' + response.result.error.message);
 		      document.getElementById('log').innerHTML = "Error: Permission Denied."
-		      //		      document.getElementById('setup').style.display = "inline"
+		      var all = document.getElementsByClassName('si-only');
+		      for (var i = 0; i < all.length; i++) {
+			  all[i].style.display = 'none';
+		      }
+
+		      //document.getElementById('myTopNav').style.display = "none"
 		  });
    
 	//    document.getElementById('page-content').style.display = "block"
@@ -188,6 +202,13 @@ function myFunction() {
           authorizeButton.style.display = 'block';
           signoutButton.style.display = 'none';
 	    document.getElementById('page-content').style.display = "none"
+	 //   document.getElementById('myTopnav').style.display = "none"
+
+	    var all = document.getElementsByClassName('si-only');
+	    for (var i = 0; i < all.length; i++) {
+		all[i].style.display = 'none';
+	    }
+
         }
       }
 
