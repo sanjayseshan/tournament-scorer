@@ -3,23 +3,54 @@
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="stylesheet" type="text/css" href="css/accordian.css">
-  
+
   <link rel="stylesheet" href="w3.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  
+  <style>
+  .button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 15px;
+      margin: 4px 2px;
+      -webkit-transition-duration: 0.4s; /* Safari */
+      transition-duration: 0.4s;
+      cursor: pointer;
+  }
+
+  .button2 {
+      border-radius: 12px;
+      background-color: #008CBA;
+      color: white;
+      border: 2px solid #008CBA;
+  }
+
+  .button2:hover {
+      background-color: white;
+      color: black;
+      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+
+  </style>
+
   <title>Settings</title>
-  
+
 </head>
 <body>
   <div style="max-width: 1024px;margin:0 auto;">
-    <!--  <script> 
+    <!--  <script>
       $(function(){
-	  $("#header").load("header.html"); 
+	  $("#header").load("header.html");
       });
     </script> -->
     <div class="topnav" id="myTopnav" style="width:100%">
-      
+
       <script>
     	q = window.location.search
 	function getParameterByName(name, url) {
@@ -54,45 +85,45 @@
     <section style="padding: 5px 5px 5px 15px;">
       <h2>
 	<script>
-    	  
-	  
+
+
 	  document.write(getParameterByName('tourn'));</script>
-	
-	User Manager
+
+	Settings Panel
       </h2>
-      
-      
+
+
     </section><br><section> <div class="text-body" style="font-size: 15px;">
-	
-	
-	
-	
+
+
+
+
 	<b>Sign in to the associated Google account to continue:</b><br>
-	<button id="authorize_button" style="display: none;">Sign in</button>
-	<button id="signout_button" style="display: none;">Sign Out</button>
-	
+  <button id="authorize_button" onclick="window.location.href = 'start.html'" class="button button2" style="max-width: 250px; display: none" ><i class="fa fa-toggle-off" aria-hidden="true"></i> Sign In Of Google</button>
+  <button id="signout_button" onclick="window.location.href = 'start.html'" class="button button2" style="max-width: 250px; display: none" ><i class="fa fa-toggle-on" aria-hidden="true"></i> Sign Out Of Google</button>
+
 	<script type="text/javascript">
     	  // Client ID and API key from the Developer Console
     	  var CLIENT_ID = '901774097490-294f3s7it32rh65oodpclij4alj81h2m.apps.googleusercontent.com';
 	  var API_KEY = 'AIzaSyDQp4VLGP04s6X6Efp96waVV4NjYvTirYc';
-	  
+
 	  // Array of API discovery doc URLs for APIs used by the quickstart
 	  var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4","https://www.googleapis.com/discovery/v1/apis/drive/v2/rest"];
-	  
+
 	  // Authorization scopes required by the API; multiple scopes can be
 	  // included, separated by spaces.
 	  var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly https://spreadsheets.google.com/feeds https://www.googleapis.com/auth/drive.metadata.readonly https://www.googleapis.com/auth/drive.file";
-	  
+
 	  var authorizeButton = document.getElementById('authorize_button');
 	  var signoutButton = document.getElementById('signout_button');
-	  
+
 	  /**
 	   *  On load, called to load the auth2 library and API client library.
 	   */
 	  function handleClientLoad() {
 	      gapi.load('client:auth2', initClient);
 	  }
-	  
+
 	  /**
 	   *  Initializes the API client library and sets up sign-in state
 	   *  listeners.
@@ -106,14 +137,14 @@
 	      }).then(function () {
 		  // Listen for sign-in state changes.
 		  gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-		  
+
 		  // Handle the initial sign-in state.
 		  updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
 		  authorizeButton.onclick = handleAuthClick;
 		  signoutButton.onclick = handleSignoutClick;
 	      });
 	  }
-	  
+
 	  /**
 	   *  Called when the signed in status changes, to update the UI
 	   *  appropriately. After a sign-in, the API is called.
@@ -122,7 +153,7 @@
 	      if (isSignedIn) {
 		  authorizeButton.style.display = 'none';
 		  signoutButton.style.display = 'block';
-		  
+
 		  var values = [
 		      [
 			  "0"
@@ -147,7 +178,7 @@
 		      document.getElementById('log').innerHTML = "Error: Permission Denied."
 		      //		      document.getElementById('setup').style.display = "inline"
 		  });
-		  
+
 		  listMajors();
 	      } else {
 		  authorizeButton.style.display = 'block';
@@ -155,21 +186,21 @@
 		  document.getElementById('setup').style.display = "none"
 	      }
 	  }
-	  
+
 	  /**
 	   *  Sign in the user upon button click.
 	   */
 	  function handleAuthClick(event) {
 	      gapi.auth2.getAuthInstance().signIn();
 	  }
-	  
+
 	  /**
 	   *  Sign out the user upon button click.
 	   */
 	  function handleSignoutClick(event) {
 	      gapi.auth2.getAuthInstance().signOut();
 	  }
-	  
+
 	  /**
 	   * Append a pre element to the body containing the given message
 	   * as its text node. Used to display the results of the API call.
@@ -182,7 +213,7 @@
 	      //document.createTextNode(message + '\n');
 	      pre.innerHTML = pre.innerHTML + textContent;
 	  }
-	  
+
 	  /**
 	   * Print the names and majors of students in a sample spreadsheet:
 	   * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
@@ -222,7 +253,7 @@
 		  }
 	      });
 	  }
-	  
+
 	  function appendValues(spreadsheetId, range, valueInputOption, _values, callback) {
 	      var values = _values
 	      var body = {
@@ -238,10 +269,10 @@
 		  console.log(`${result.updates.updatedCells} cells appended.`)
 		  document.getElementById('content').innerHTML = ""
 		  listMajors()
-		  
+
 	      });
 	  }
-	  
+
 	  function insertPermission(file){
 	      request = gapi.client.drive.permissions.insert({
 		  'fileId': file,
@@ -253,7 +284,7 @@
 	      })
 	      request.then(function(response) {console.log(response)});
 	  }
-	  
+
 	  function addUser(file, user) {
 	      //alert(global+ "  " + user)
 	      if (user[global].indexOf('gmail') !== -1) {
@@ -280,15 +311,15 @@
 		      }
 		  })
 	      }
-	      
+
 	      console.log('Sent '+getParameterByName("score")+' to add '+user[x])
 	      send.then((response) => {
 		  var result = response.result;
 		  console.log("finished "+ user[global])
 		  console.log(response)
-		  
-		  
-		  
+
+
+
 		  if (user[global].indexOf('gmail') !== -1) {
 		      send = gapi.client.drive.permissions.insert({
 			  'fileId': getParameterByName('mission'),
@@ -317,24 +348,24 @@
 		      var result = response.result;
 		      console.log("finished "+ user[global])
 		      console.log(response)
-		      
-		      
+
+
 		      appendPre('<b style="color:red">added user '+user[global]+'</b>')
-		      
+
 		      if (user[global+1] != undefined) {
 			  global++
 			  addUser("",user)
 		      }
 		  });
 		  //	      request.then(function(response) {console.log(response)});
-		  
-		  
-		  
-		  
+
+
+
+
 	      });
 	      //	      request.then(function(response) {console.log(response)});
 	  }
-	  
+
 	  global=0
 	  usrs = []
 	  function run() {
@@ -359,7 +390,7 @@
 	      //	      addUser(getParameterByName('score'),tmp)
 	      addUser(getParameterByName('mission'),usrs)
 	  }
-	  
+
 	  function sleep(milliseconds) {
 	      var start = new Date().getTime();
 	      for (var i = 0; i < 1e7; i++) {
@@ -368,9 +399,9 @@
 		  }
 	      }
 	  }
-	  
+
 	  function deleteMe() {
-	      
+
 	      var values = [
 		  [
 		      "0"
@@ -390,7 +421,7 @@
 		  console.log(`${result.updatedCells} cells updated.`);
 		  document.getElementById('setup').style.display = "inline"
 		  document.getElementById('log').innerHTML = ""
-		  
+
 		  gapi.client.sheets.spreadsheets.values.get({
 		      spreadsheetId: '11eecocqxnYIqsYY-24pGfqPwhAEanU9mvCK4G43Abj0',
 		      range: 'A:D',
@@ -429,27 +460,27 @@
 		  }, function(response) {
 		      appendPre('Error: ' + response.result.error.message);
 		  });
-		  
+
 	      }, function(response) {
 		  appendPre('Error: ' + response.result.error.message);
 		  document.getElementById('log').innerHTML = "Error: Permission Denied."
 		  document.getElementById('setup').style.display = "none"
 	      });
 	  }
-	  
+
 	</script>
-	
+
 	<script async defer src="https://apis.google.com/js/api.js"
 		onload="this.onload=function(){};handleClientLoad()"
 		onreadystatechange="if (this.readyState === 'complete') this.onload()">
 	</script>
-	
-	
+
+
 	<br>
 	<div id="log"></div>
 	<div id="setup" style="display:none;">
 	  To add teams and set number of competition rounds: <br>
-	<script>  document.write('<button onclick="window.open(\'https://docs.google.com/spreadsheets/d/'+getParameterByName("config")+'/edit\')" class="button button2" style="width: 170px;" ><i class="fa fa-table" aria-hidden="true"></i> Setup Panel</button>')</script>
+	<script>  document.write('<button onclick="window.open(\'https://docs.google.com/spreadsheets/d/'+getParameterByName("config")+'/edit\')" class="button button2" style="width: 190px;" ><i class="fa fa-table" aria-hidden="true"></i> &emsp; Setup Panel</button>')</script>
 
 	  <br><br><br>
 	  Add the Google emails of each referee below (1 per line):<br>
@@ -459,51 +490,51 @@
 	  Email message to associate with the notification (only sent to those without a Google account):<br>
 	  <textarea rows="20" cols="50" id="note">
 Hello,
-	    
+
 Thank you for volunteering at the FIRST LEGO League Tournament. This email inviting you to edit a Google Sheet can be ignored as it is only to add you to the tournament. You have been sent this, because the tournament flagged you as a non-Google user.
-	    
+
 If this is actually a Google Account and we flagged you wrong, you can safely ignore this email.
-	    
+
 At the tournament, you will be signing in to a Google Apps account.
-	    
+
 Because this is not a Google account, please follow the following instructions to connect your existing account to Google Apps: https://mockingbird.marketing/6-steps-set-google-account-gmail-already-existing-email/
-	    
+
 Note: at the tournament, you must use this email, or that of another referee.
-	    
-	    
+
+
 This tournament is run by the software at tournament.ev3lessons.com!
-	    
+
 Sincerely,
-	    
+
 Your tournament director and the creators of tournament.ev3lessons.com
-	    
+
 	  </textarea>
 	  <br><br>
-	  <button onclick="run()">Add Users</button>
-	  
-	  
+    <button onclick="run()" class="button button2" style="width: 190px;" ><i class="fa fa-user-plus" aria-hidden="true"></i> &emsp; Add Users</button>
+
+
 	  <br>
 	  <div id="content"></div>
-	  
+
 	  <br><br><br><br>
-	  
-	  
-	  If you no longer want to keep this tournament (WARNING: There is no going back): 
-	  <button onclick="deleteMe()">Delete this tournament</button>
+
+
+	  If you no longer want to keep this tournament (WARNING: There is no going back):
+    <button onclick="deleteMe()" class="button button2" style="width: 275px;" ><i class="fa fa-window-close" aria-hidden="true"></i> &emsp; Delete this tournament</button>
 	</div>
       </div>
-      
+
     </section>
     <br>
-    <script> 
+    <script>
       $(function(){
-	  $("#footer").load("footer.html"); 
+	  $("#footer").load("footer.html");
       });
     </script>
     <div id="footer"></div>
   </div>
   <script src='js/accordian.js'></script>
-  
+
 </body>
 
 <script>
@@ -511,8 +542,8 @@ Your tournament director and the creators of tournament.ev3lessons.com
 	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 			     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 			    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  
+
   ga('create', 'UA-XXX-2', 'auto');
   ga('send', 'pageview');
-  
+
 </script>
