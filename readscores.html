@@ -1,4 +1,4 @@
-`<html>
+<html>
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <title>Scoreboard</title>
@@ -214,7 +214,7 @@
 						      }
 						      var maxSc = Math.max.apply(null,rowscnum)
 						      if (maxSc == -10000) {
-							  maxSc = '0'
+							  maxSc = '-'
 						      }
 						      appendArr('<td><text class="rank"></text></td><td>'+row[1] +' - '+row[0]+'</td> '+tmp+'<td style="font-weight:bold">'+maxSc+'</td></tr>');
 						  }
@@ -274,9 +274,11 @@
 						rows = table.rows;
 						for (i = 1; i < (rows.length - 1); i++) {
 						    shouldSwitch = false;
-						    x = rows[i].getElementsByTagName("TD")[(rounds+2)];
-						    y = rows[i + 1].getElementsByTagName("TD")[(rounds+2)];
-						    if (Number(x.innerHTML) < Number(y.innerHTML)) {
+						    x = rows[i].getElementsByTagName("TD")[(rounds+2)] 
+						    y = rows[i + 1].getElementsByTagName("TD")[(rounds+2)] == '-' ? 0 : rows[i + 1].getElementsByTagName("TD")[(rounds+2)];
+						    xScore = x.innerHTML == '-' ? 0 : x.innerHTML
+						    yScore = y.innerHTML == '-' ? 0 : y.innerHTML
+						    if (Number(xScore) < Number(yScore)) {
 							shouldSwitch = true;
 							break;
 						    }
