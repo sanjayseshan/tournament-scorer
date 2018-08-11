@@ -1,4 +1,4 @@
-<html>
+`<html>
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <title>Scoreboard</title>
@@ -175,7 +175,7 @@
 						  tmp = tmp + "<td>Round "+x+"</td>"
 						  x++
 					      }
-					      appendArr("<table style='width:100%;font-size:200%;border-collapse: collapse;' id='sort' border='1'><tr style='background-color: yellow'><td>Rank</td><td>Team</td>"+tmp+"<td>High Score</td></tr>")
+					      appendArr("<table style='width:100%;font-size:200%;border-collapse: collapse;text-align:center;' id='sort' border='1'><tr style='background-color: yellow'><td>Rank</td><td>Team</td>"+tmp+"<td>High Score</td></tr>")
 					      
 					  }
 					  
@@ -194,17 +194,29 @@
 						  if (b == i)  {
 						      rowscnum = []
 						      x = 0
+						      
 						      while (x < rounds) {
-							  rowscnum.push(parseInt(rowsc[x]))
+							  var tmpsc = parseInt(rowsc[x])
+							  if (tmpsc < 0) {
+							      rowsc[x] = 0
+							  }
+							  if (isNaN(tmpsc)) {
+							      tmpsc = -10000
+							  }
+							  rowscnum.push(tmpsc)
 							  x++
 						      }
 						      tmp = ""
 						      x = 0
 						      while (x < rounds) {
-							  tmp = tmp + "<td>" + rowscnum[x]+"</td>"
+							  tmp = tmp + "<td>" + rowsc[x]+"</td>"
 							  x++
 						      }
-						      appendArr('<td><text class="rank"></text></td><td>'+row[1] +' - '+row[0]+'</td> '+tmp+'<td style="font-weight:bold">'+Math.max.apply(null,rowscnum)+'</td></tr>');
+						      var maxSc = Math.max.apply(null,rowscnum)
+						      if (maxSc == -10000) {
+							  maxSc = '-'
+						      }
+						      appendArr('<td><text class="rank"></text></td><td>'+row[1] +' - '+row[0]+'</td> '+tmp+'<td style="font-weight:bold">'+maxSc+'</td></tr>');
 						  }
 						  
 						  

@@ -220,7 +220,7 @@ After you sign in, pick a tournament name. If you want to access an existing tou
 		  var array = [];
 
 		  for (var i = 0; i < dimensions[0]; ++i) {
-		      array.push(dimensions.length == 1 ? 0 : zeros(dimensions.slice(1)));
+		      array.push(dimensions.length == 1 ? '-' : zeros(dimensions.slice(1)));
 		  }
 
 		  return array;
