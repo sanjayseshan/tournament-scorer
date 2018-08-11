@@ -65,9 +65,9 @@
 	    The administrator of the tournament will have to sign in to a Google account to set up the tournament.  <br><br>
 
 	    
-During your login process, you will get a pop-up saying “This app isn’t verified”. Click on the small “advanced” link in the bottom left and then click "Go to flltutorials.com (unsafe)”
+During your login process, you will get a pop-up saying "This app isn't verified". Click on the small "advanced" link in the bottom left and then click "Go to flltutorials.com (unsafe)"
 <br><br>
-In the next dialog - click the “Allow” button. This tournament system will be creating spreadsheets for storing scores and sharing them with the other referees.
+In the next dialog - click the "Allow" button. This tournament system will be creating spreadsheets for storing scores and sharing them with the other referees.
 <br>
 <br>
 After you sign in, pick a tournament name. If you want to access an existing tournament you have made, type in the name of your tournament. If you have forgotten your tournament name, go to Tournaments List in the menu bar.
@@ -304,9 +304,9 @@ After you sign in, pick a tournament name. If you want to access an existing tou
 					      insertPermission(sheet1["spreadsheetId"])
 					      insertPermission(sheet3["spreadsheetId"])
 
-					      nameSheet('Score Sheet',sheet1["spreadsheetId"])
-					      nameSheet('Score Archive Sheet',sheet2["spreadsheetId"])
-					      nameSheet('Config Sheet',sheet3["spreadsheetId"])
+					      nameSheet('Score Sheet: '+document.getElementById('text').value,sheet1["spreadsheetId"])
+					      nameSheet('Score Archive Sheet: '+document.getElementById('text').value,sheet2["spreadsheetId"])
+					      nameSheet('Config Sheet: '+document.getElementById('text').value,sheet3["spreadsheetId"])
 
 
 					      appendValues('11eecocqxnYIqsYY-24pGfqPwhAEanU9mvCK4G43Abj0','A:A', 'USER_ENTERED', [[document.getElementById('text').value,sheet1["spreadsheetId"],sheet2["spreadsheetId"],sheet3["spreadsheetId"]]])
@@ -371,6 +371,39 @@ After you sign in, pick a tournament name. If you want to access an existing tou
 		  request.then(function(response) {console.log(response)});
 	      }
 
+	      function loadSheet() {
+		  var spreadsheetBody = {
+		      //	    "title":"FLLTutorials.com FLL Into Orbit Scorer"
+		      // TODO: Add desired properties to the request body.
+		  };
+
+		  gapi.client.sheets.spreadsheets.values.get({
+		      spreadsheetId: '11eecocqxnYIqsYY-24pGfqPwhAEanU9mvCK4G43Abj0',
+		      range: 'A:D',
+		  }).then(function(response) {
+		      var range = response.result;
+//		      alert(range)
+		      if (range.values != undefined) {
+			  if (range.values.length > 0) {
+			      aaa = 0
+			      for (i = 0; i < range.values.length; i++) {
+				  var row = range.values[i];
+				  // Print columns A and E, which correspond to indices 0 and 4.
+				  appendPre(row[0] + ': <a href="links.html?tourn=' + row[0] + '&score='+row[1]+'&mission='+row[2]+'&config='+row[3]+'">link</a>');
+				  if (row[0] == document.getElementById('text').value) {
+				      alert("Existing tournament with this name found! Press Okay/Close to be redirected there.")
+				      window.location.href = "links.html?tourn=" + row[0] + "&score="+row[1]+"&mission="+row[2]+"&config="+row[3]
+				      aaa = 1
+				  } 
+			      }
+			      if (aaa == 0) {
+				      alert('No tournament with this name was found. Please try again or check the Tournaments List.')
+			      }
+			  }
+		      }
+		  });
+	      }
+
 	    </script>
 
 	    <script async defer src="https://apis.google.com/js/api.js"
@@ -378,7 +411,10 @@ After you sign in, pick a tournament name. If you want to access an existing tou
 		    onreadystatechange="if (this.readyState === 'complete') this.onload()">
 	    </script>
 
-      <div><button onclick="makeSheet();" class="button button2" style="max-width: 400px;" ><i class="fa fa-folder" aria-hidden="true"></i> &emsp; Create/Load Tournament</button></div>
+	    <div>
+	      <button onclick="makeSheet();" class="button button2" style="max-width: 400px;" ><i class="fa fa-folder" aria-hidden="true"></i> &emsp; Create Tournament</button>
+	      <button onclick="loadSheet();" class="button button2" style="max-width: 400px;" ><i class="fa fa-folder" aria-hidden="true"></i> &emsp; Load Existing Tournament</button>
+	    </div>
 </div>
 
 	    <br>
