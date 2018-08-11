@@ -194,7 +194,7 @@
 	    listMajors();
 	 		  var values = [
 		      [
-			  "0"
+			  " "
 		      ],
 		      // Additional rows ...
 		  ];
@@ -202,7 +202,7 @@
 		      values: values
 		  };
 		  gapi.client.sheets.spreadsheets.values.update({
-		      spreadsheetId: getParameterByName('score'),
+		      spreadsheetId: getParameterByName('config'),
 		      range: 'I1:I1',
 		      valueInputOption: "USER_ENTERED",
 		      resource: body
@@ -362,7 +362,7 @@
 		  send = gapi.client.drive.permissions.insert({
 		      'fileId': getParameterByName('score'),
 		      'sendNotificationEmails': true,
-		      'emailMessage': document.getElementById('note').value,
+		      'emailMessage': document.getElementById('note').value+'\n Account: '+user[global]+'\n Tournament: '+getParameterByName('tourn'),
 		      'resource': {
 			  "role": "writer",
 			  "type": "user",
@@ -397,7 +397,7 @@
 		      send = gapi.client.drive.permissions.insert({
 			  'fileId': getParameterByName('mission'),
 			  'sendNotificationEmails': true,
-			  'emailMessage': document.getElementById('note').value,
+			  'emailMessage': document.getElementById('note').value+'\n Account: '+user[global]+'\n Tournament: '+getParameterByName('tourn'),
 			  'resource': {
 			      "role": "writer",
 			      "type": "user",
@@ -554,11 +554,32 @@
 	  <textarea rows="20" cols="50" id="note">
 Hello Volunteer,
 
-Thank you for volunteering to referee at our event. You received an invitation to edit documents that will be used at the event. There is no need to make any edits. These are automatically generated when you score teams at the event.
+Thank you for volunteering to referee at our event. 
 
-We use a Google-based scoring system by FLLTutorials.com at our event. When you arrive at the tournament, you will need to use the email address this message is being sent to in order to score teams.
+This email provides instructions for accessing the scoring system:
 
-If you don't use a Google email, you will have to connect your existing email account to Google Apps in order to use the scoring tools we use at the event. Follow these simple steps to connect to enable your non-Gmail account to access the Google Apps we will be using:
+1) DO NOT CLICK ON THE “OPEN IN SHEETS” BUTTON
+
+2) The scoring system relies on Google spreadsheets. We have given the account this was emailed to access to the spreadsheet (this account is also listed at the bottom of this email). You will need to log in to this account on Google to enter scores. If this is not a Google account, there are instructions below to enable Google access.
+
+3) If you are signed into Google with a different account, go to www.google.com and sign out. 
+
+4) Go to tournament.flltutorials.com and click on "Start/Access a Tournament”
+
+5) Click on “Sign in to Google” on the next page
+
+6) In Tournament Name, enter the tournament name listed at the bottom of this email and then click on Access Tournament
+
+7) The pop-up should say "An existing tournament with this name was found. Would you line to redirect to it?” — click OK
+
+8) Click on Tournament Scorer (for referees)
+
+9) You can now click on part of the table to enter a score
+
+Sincerely,
+Your Tournament Director
+
+******** Enabling Google Access If Needed **********
 
 Step 1: Log out of any Gmail account(s) you're currently logged in to, then open https://accounts.google.com.
 Step 2: Click the Create Account link below the gray "sign in with your Google Account" box.
@@ -567,10 +588,10 @@ Step 4: Enter your non-Gmail email address you would like to register with Googl
 Step 5: Finish filling out the new account form and accept Google's Privacy Policy and Terms.
 Step 6: Confirm your new account with the email address you provided.
 
-Alternatively, if this is an issue, let your Tournament Director know and a generic referee account can be created for your use. Please let us know.
 
-Sincerely,
-Your Tournament Director
+************* account information **************
+
+
 
 	  </textarea>
 	  <br><br>
