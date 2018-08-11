@@ -1,39 +1,86 @@
 <head>
-<link rel="stylesheet" type="text/css" href="style.css">
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<link rel="stylesheet" type="text/css" href="css/accordian.css">
-
-<link rel="stylesheet" href="w3.css">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- 
-<title>Score Entry View</title>
-
-<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js?ver=1.3.2'></script>
-
-
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="css/accordian.css">
+  
+  <link rel="stylesheet" href="w3.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+  <title>Score Entry View</title>
+  
+  <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js?ver=1.3.2'></script>
+  
+  
 </head>
 <body>
-
-    <script>
+  
+  <script>
     $(function(){
-      $("#topbar").load("topbar.html");
+	$("#topbar").load("topbar.html");
     });
-    </script>
-    <div id="topbar"></div><br>
+  </script>
+  <div id="topbar"></div><br>
   
   <div style="max-width: 1024px;margin:0 auto;">
-  <!--  <script> 
-    $(function(){
-      $("#header").load("header.html"); 
-    });
+    <!--  <script> 
+      $(function(){
+	  $("#header").load("header.html"); 
+      });
     </script> -->
-  <div class="topnav" id="myTopnav" style="width:100%">
-
-  <script>
-    q = window.location.search
- 	  function getParameterByName(name, url) {
+    <div class="topnav" id="myTopnav" style="width:100%">
+      
+      <script>
+    	q = window.location.search
+	function getParameterByName(name, url) {
+	    if (!url) url = window.location.href;
+	    name = name.replace(/[\[\]]/g, "\\$&");
+	    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+		results = regex.exec(url);
+	    if (!results) return null;
+	    if (!results[2]) return '';
+	    return decodeURIComponent(results[2].replace(/\+/g, " "));
+	}
+	document.write('\
+	<a href="links.html'+q+'">Home</a>\
+	<a class="si-only" style="display:none" href="scorer-nav-if.html'+q+'">Scorer</a>\
+	<a class="si-only" style="display:none" href="readscores.html'+q+'">Scoreboard</a>\
+	<a class="si-only" style="display:none" href="settings.html'+q+'">Settings</a>\
+	')
+	
+      </script>
+      <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+    </div>
+    <script>
+      function myFunction() {
+	  var x = document.getElementById("myTopnav");
+	  if (x.className === "topnav") {
+	      x.className += " responsive";
+	  } else {
+	      x.className = "topnav";
+	  }
+      }
+    </script>
+    <div id="header"></div><br>
+    <section style="padding: 5px 5px 5px 15px;">
+      <h2>
+	<script>
+    	  
+	  document.write(getParameterByName('tourn'));</script>
+	
+	Referee Score Entry View
+      </h2>
+      
+      
+    </section><br><section> <div class="text-body" style="font-size: 15px;">
+	
+	
+	
+	<base target="_parent">
+	
+	<script>
+    	  function getParameterByName(name, url) {
 	      if (!url) url = window.location.href;
 	      name = name.replace(/[\[\]]/g, "\\$&");
 	      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
@@ -42,117 +89,70 @@
 	      if (!results[2]) return '';
 	      return decodeURIComponent(results[2].replace(/\+/g, " "));
 	  }
-	document.write('\
-	<a href="links.html'+q+'">Home</a>\
-	<a class="si-only" style="display:none" href="scorer-nav-if.html'+q+'">Scorer</a>\
-	<a class="si-only" style="display:none" href="readscores.html'+q+'">Scoreboard</a>\
-	<a class="si-only" style="display:none" href="settings.html'+q+'">Settings</a>\
-      ')
-
-    </script>
-    <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
-</div>
-<script>
-function myFunction() {
-    var x = document.getElementById("myTopnav");
-    if (x.className === "topnav") {
-        x.className += " responsive";
-    } else {
-        x.className = "topnav";
-    }
-}
-</script>
-     <div id="header"></div><br>
-  <section style="padding: 5px 5px 5px 15px;">
-<h2>
-  <script>
-    
-  document.write(getParameterByName('tourn'));</script>
-
- Referee Score Entry View
-</h2>
-
-    
-</section><br><section> <div class="text-body" style="font-size: 15px;">
-
-
-
-<base target="_parent">
-
-<script>
-    function getParameterByName(name, url) {
-	if (!url) url = window.location.href;
-	name = name.replace(/[\[\]]/g, "\\$&");
-	var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-	    results = regex.exec(url);
-	if (!results) return null;
-	if (!results[2]) return '';
-	return decodeURIComponent(results[2].replace(/\+/g, " "));
-    }
-  
-</script>
-<button id="authorize_button" style="display: none;">Sign in</button>
-<button id="signout_button" style="display: none;">Sign Out</button>
-
-<div id="content" style="display:none;"></div>
-<div id="log"></div>
-
-<script type="text/javascript">
-    // Client ID and API key from the Developer Console
-    var CLIENT_ID = '901774097490-294f3s7it32rh65oodpclij4alj81h2m.apps.googleusercontent.com';
-  var API_KEY = 'AIzaSyDQp4VLGP04s6X6Efp96waVV4NjYvTirYc';
-  // Array of API discovery doc URLs for APIs used by the quickstart
-  var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
-  
-  // Authorization scopes required by the API; multiple scopes can be
-  // included, separated by spaces.
-  var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
-  
-  var authorizeButton = document.getElementById('authorize_button');
-  var signoutButton = document.getElementById('signout_button');
-  
-  /**
-   *  On load, called to load the auth2 library and API client library.
-   */
-  function handleClientLoad() {
-      gapi.load('client:auth2', initClient);
-  }
-  
-  /**
-   *  Initializes the API client library and sets up sign-in state
-   *  listeners.
-   */
-  function initClient() {
-      gapi.client.init({
-	  apiKey: API_KEY,
-	  clientId: CLIENT_ID,
-	  discoveryDocs: DISCOVERY_DOCS,
-	  scope: SCOPES
-      }).then(function () {
-	  // Listen for sign-in state changes.
-	  gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
 	  
-	  // Handle the initial sign-in state.
-	  updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-	  authorizeButton.onclick = handleAuthClick;
-	  signoutButton.onclick = handleSignoutClick;
-      });
-  }
-  
-  /**
-   *  Called when the signed in status changes, to update the UI
-   *  appropriately. After a sign-in, the API is called.
-   */
-  function updateSigninStatus(isSignedIn) {
-	  if (isSignedIn) {
-	      //document.getElementById('iFrame1').contentWindow.location.reload();
-	      //resizeIFrameToFitContent(document.getElementById('iFrame1'))
-	      //setTimeout(function(){ resizeIFrameToFitContent(document.getElementById('iFrame1')); }, 3000);
-	      //document.getElementById('iFrame1').width = "100%"
-
-          authorizeButton.style.display = 'none';
-          signoutButton.style.display = 'block';
-	 		  var values = [
+	</script>
+	<button id="authorize_button" style="display: none;">Sign in</button>
+	<button id="signout_button" style="display: none;">Sign Out</button>
+	
+	<div id="content" style="display:none;"></div>
+	<div id="log"></div>
+	
+	<script type="text/javascript">
+    	  // Client ID and API key from the Developer Console
+    	  var CLIENT_ID = '901774097490-294f3s7it32rh65oodpclij4alj81h2m.apps.googleusercontent.com';
+	  var API_KEY = 'AIzaSyDQp4VLGP04s6X6Efp96waVV4NjYvTirYc';
+	  // Array of API discovery doc URLs for APIs used by the quickstart
+	  var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
+	  
+	  // Authorization scopes required by the API; multiple scopes can be
+	  // included, separated by spaces.
+	  var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
+	  
+	  var authorizeButton = document.getElementById('authorize_button');
+	  var signoutButton = document.getElementById('signout_button');
+	  
+	  /**
+	   *  On load, called to load the auth2 library and API client library.
+	   */
+	  function handleClientLoad() {
+	      gapi.load('client:auth2', initClient);
+	  }
+	  
+	  /**
+	   *  Initializes the API client library and sets up sign-in state
+	   *  listeners.
+	   */
+	  function initClient() {
+	      gapi.client.init({
+		  apiKey: API_KEY,
+		  clientId: CLIENT_ID,
+		  discoveryDocs: DISCOVERY_DOCS,
+		  scope: SCOPES
+	      }).then(function () {
+		  // Listen for sign-in state changes.
+		  gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+		  
+		  // Handle the initial sign-in state.
+		  updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+		  authorizeButton.onclick = handleAuthClick;
+		  signoutButton.onclick = handleSignoutClick;
+	      });
+	  }
+	  
+	  /**
+	   *  Called when the signed in status changes, to update the UI
+	   *  appropriately. After a sign-in, the API is called.
+	   */
+	  function updateSigninStatus(isSignedIn) {
+	      if (isSignedIn) {
+		  //document.getElementById('iFrame1').contentWindow.location.reload();
+		  //resizeIFrameToFitContent(document.getElementById('iFrame1'))
+		  //setTimeout(function(){ resizeIFrameToFitContent(document.getElementById('iFrame1')); }, 3000);
+		  //document.getElementById('iFrame1').width = "100%"
+		  
+		  authorizeButton.style.display = 'none';
+		  signoutButton.style.display = 'block';
+		  var values = [
 		      [
 			  "0"
 		      ],
@@ -169,15 +169,15 @@ function myFunction() {
 		  }).then((response) => {
 		      var result = response.result;
 		      console.log(`${result.updatedCells} cells updated.`);
-		      		      	      document.getElementById('content').innerHTML = ""
-
+		      document.getElementById('content').innerHTML = ""
+		      
 		      listMajors();
-
-		      	      document.getElementById('content').style.display = "inline"
-		//      document.getElementById('page-content').style.display = "inline"
+		      
+		      document.getElementById('content').style.display = "inline"
+		      //      document.getElementById('page-content').style.display = "inline"
 		      document.getElementById('log').innerHTML = ""
-	//	      document.getElementById('myTopnav').style.display = "inline"
-
+		      //	      document.getElementById('myTopnav').style.display = "inline"
+		      
 		      var all = document.getElementsByClassName('si-only');
 		      for (var i = 0; i < all.length; i++) {
 			  all[i].style.display = 'inline';
@@ -191,255 +191,239 @@ function myFunction() {
 			  all[i].style.display = 'none';
 		      }
 		      document.getElementById('iFrame1').style.display = "none"
-
-
+		      
+		      
 		      //document.getElementById('myTopNav').style.display = "none"
 		  });
-   
-	//    document.getElementById('page-content').style.display = "block"
-        } else {
-          authorizeButton.style.display = 'block';
-          signoutButton.style.display = 'none';
-	   document.getElementById('content').style.display = "none"
-	 //   document.getElementById('myTopnav').style.display = "none"
-
-	    var all = document.getElementsByClassName('si-only');
-	    for (var i = 0; i < all.length; i++) {
-		all[i].style.display = 'none';
-	    }
-	    //document.getElementById('iFrame1').style.display = "none"
-
-
-	}
-  }
-  
-  /**
-   *  Sign in the user upon button click.
-   */
-  function handleAuthClick(event) {
-      gapi.auth2.getAuthInstance().signIn();
-  }
-  
-  /**
-   *  Sign out the user upon button click.
-   */
-  function handleSignoutClick(event) {
-      gapi.auth2.getAuthInstance().signOut();
-  }
-  
-  /**
-   * Append a pre element to the body containing the given message
-   * as its text node. Used to display the results of the API call.
-   *
-   * @param {string} message Text to be placed in pre element.
-   */
-  function appendPre(message) {
-      var pre = document.getElementById('content');
-      var textContent = message + "<br>"
-      //document.createTextNode(message + '\n');
-      pre.innerHTML = pre.innerHTML + textContent;
-  }
-  
-  /**
-   * Print the names and majors of students in a sample spreadsheet:
-   * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
-   */
-  function listMajors() {
-      
-      
-      
-      
-      gapi.client.sheets.spreadsheets.values.get({
-	  spreadsheetId: '11eecocqxnYIqsYY-24pGfqPwhAEanU9mvCK4G43Abj0',
-	  range: 'A:D',
-      }).then(function(response) {
-	  var range = response.result;
-	  if (range.values.length > 0) {
-	      for (i = 0; i < range.values.length; i++) {
-		  var row = range.values[i];
-		  // Print columns A and E, which correspond to indices 0 and 4.
-		  //              appendPre(row[0] + ': <a href="links.html?tourn=' + row[0] + '&score='+row[1]+'&mission='+row[2]+'&config='+row[3]+'">link</a>');
 		  
-		  if (row[0] == getParameterByName('tourn')) {
-		      datalink = '?tourn=' + row[0] + '&score='+row[1]+'&mission='+row[2]+'&config='+row[3]
-		      //alert(row[0])
-		      val = row
-		      
-		      
-		      gapi.client.sheets.spreadsheets.values.get({
-			  spreadsheetId: val[1],
-			  range: 'A:Z',
-		      }).then(function(response) {
-			  var rangesc = response.result;  
+		  //    document.getElementById('page-content').style.display = "block"
+	      } else {
+		  authorizeButton.style.display = 'block';
+		  signoutButton.style.display = 'none';
+		  document.getElementById('content').style.display = "none"
+		  //   document.getElementById('myTopnav').style.display = "none"
+		  
+		  var all = document.getElementsByClassName('si-only');
+		  for (var i = 0; i < all.length; i++) {
+		      all[i].style.display = 'none';
+		  }
+		  //document.getElementById('iFrame1').style.display = "none"
+		  
+		  
+	      }
+	  }
+	  
+	  /**
+	   *  Sign in the user upon button click.
+	   */
+	  function handleAuthClick(event) {
+	      gapi.auth2.getAuthInstance().signIn();
+	  }
+	  
+	  /**
+	   *  Sign out the user upon button click.
+	   */
+	  function handleSignoutClick(event) {
+	      gapi.auth2.getAuthInstance().signOut();
+	  }
+	  
+	  /**
+	   * Append a pre element to the body containing the given message
+	   * as its text node. Used to display the results of the API call.
+	   *
+	   * @param {string} message Text to be placed in pre element.
+	   */
+	  function appendPre(message) {
+	      var pre = document.getElementById('content');
+	      var textContent = message + "<br>"
+	      //document.createTextNode(message + '\n');
+	      pre.innerHTML = pre.innerHTML + textContent;
+	  }
+	  
+	  /**
+	   * Print the names and majors of students in a sample spreadsheet:
+	   * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
+	   */
+	  function listMajors() {
+	      
+	      
+	      
+	      
+	      gapi.client.sheets.spreadsheets.values.get({
+		  spreadsheetId: '11eecocqxnYIqsYY-24pGfqPwhAEanU9mvCK4G43Abj0',
+		  range: 'A:D',
+	      }).then(function(response) {
+		  var range = response.result;
+		  if (range.values.length > 0) {
+		      for (i = 0; i < range.values.length; i++) {
+			  var row = range.values[i];
+			  // Print columns A and E, which correspond to indices 0 and 4.
+			  //              appendPre(row[0] + ': <a href="links.html?tourn=' + row[0] + '&score='+row[1]+'&mission='+row[2]+'&config='+row[3]+'">link</a>');
 			  
-			  gapi.client.sheets.spreadsheets.values.get({
-			      spreadsheetId: val[3],
-			      range: 'A:Z',
-			  }).then(function(response) {
-			      var range = response.result;
-			      if (range.values.length > 0) {
-				  appendPre("<center><!--<h1>"+getParameterByName('tourn')+" Score Launcher</h1>-->");
+			  if (row[0] == getParameterByName('tourn')) {
+			      datalink = '?tourn=' + row[0] + '&score='+row[1]+'&mission='+row[2]+'&config='+row[3]
+			      //alert(row[0])
+			      val = row
+			      
+			      
+			      gapi.client.sheets.spreadsheets.values.get({
+				  spreadsheetId: val[1],
+				  range: 'A:Z',
+			      }).then(function(response) {
+				  var rangesc = response.result;  
 				  
-				  for (i = 0; i < range.values.length; i++) {
-				      var row = range.values[i];
-				      if (row[0] == "# of rounds:") {
-					  //alert(row[1])
-					  rounds = parseInt(row[1])
-					  x = 1
-					  tmp = ""
-					  while (x <= rounds) {
-					      tmp = tmp + "<td>Round "+x+"</td>"
-					      x++
-					  }
+				  gapi.client.sheets.spreadsheets.values.get({
+				      spreadsheetId: val[3],
+				      range: 'A:Z',
+				  }).then(function(response) {
+				      var range = response.result;
+				      if (range.values.length > 0) {
+					  appendPre("<center><!--<h1>"+getParameterByName('tourn')+" Score Launcher</h1>-->");
 					  
-					  appendPre('Scorer Language: <select id="lang" style="height: 40px">\
-  <option value="en">English</option>\
-  <option value="es">Spanish</option>\
-  <option value="pt">Portuguese</option>\
-  <option value="de">German</option>\
-  <option value="el">Greek</option>\
-  <option value="tr">Turkish</option>\
-  <option value="ro">Romanian</option>\
-  </select><br>')
-					  
-					  appendArr("<table style='width:100%;font-size:20px' id='sort' border='1'><tr style='font-weight: bold;'><td>Team</td>"+tmp+"</tr>")
-					  
-				      }
-				      
-				      //<button onclick="window.location.href = \'scorer/index.html\'+datalink+\'&team='+row[1]+'&round=1\'">
-				      if (i >= 2) {
-					  var row = range.values[i];
-					  //alert(row)
-					  // Print columns A and E, which correspond to indices 0 and 4.
-					  //              appendPre(row[0] + ': <a href="links.html?tourn=' + row[0] + '&score='+row[1]+'&mission='+row[2]+'&config='+row[3]+'">link</a>');
-					  //				appendPre(row[0]+" "+row[1]+"<br>")
-					  for (b = 0; b < rangesc.values.length; b++) {
-					      var rowsc = rangesc.values[b];
-					      console.log(rangesc)
-					      //  alert(b + " " + parseInt(row[1])+ " " + rowsc[0])
-					      
-					      if (b == i)  {
-						  rowscnum = []
-						  x = 0
-						  while (x < rounds) {
-						      rowscnum.push(rowsc[x])
-						      x++
-						  }
+					  for (i = 0; i < range.values.length; i++) {
+					      var row = range.values[i];
+					      if (row[0] == "# of rounds:") {
+						  //alert(row[1])
+						  rounds = parseInt(row[1])
+						  x = 1
 						  tmp = ""
-						  x = 0
-						  while (x < rounds) {
-						      tmp = tmp + '<td><button style="background-color:lightblue;width:100%; height:60px; font-size:40px;" onclick="window.parent.location.href = \'scorer/index.html\'+datalink+\'&team='+row[1]+'&round='+(x+1)+'&index='+i+'&lang=\'+language.value+\'\'">' + rowscnum[x]+'</button></td>'
+						  while (x <= rounds) {
+						      tmp = tmp + "<td>Round "+x+"</td>"
 						      x++
 						  }
-						  appendArr('<td>'+row[0]+' #'+row[1] + '</td> '+tmp+'</tr>');
+						  
+						  appendPre('Scorer Language: <select id="lang" style="height: 40px">\
+	  <option value="en">English</option>\
+	  <option value="es">Spanish</option>\
+	  <option value="pt">Portuguese</option>\
+	  <option value="de">German</option>\
+	  <option value="el">Greek</option>\
+	  <option value="tr">Turkish</option>\
+	  <option value="ro">Romanian</option>\
+	  </select><br>')
+						  
+						  appendArr("<table style='width:100%;font-size:20px' id='sort' border='2'><tr style='font-weight: bold;'><td>Team</td>"+tmp+"</tr>")
+						  
+					     }
+					      
+					      if (i >= 2) {
+						  var row = range.values[i];
+						  for (b = 0; b < rangesc.values.length; b++) {
+						      var rowsc = rangesc.values[b];
+						      if (b == i)  {
+							  rowscnum = []
+							  x = 0
+							  while (x < rounds) {
+							      rowscnum.push(rowsc[x])
+							      x++
+							  }
+							  tmp = ""
+							  x = 0
+							  while (x < rounds) {
+							      tmp = tmp + '<td><button style="background-color:lightblue;width:100%; height:60px; font-size:40px;" onclick="window.parent.location.href = \'scorer/index.html\'+datalink+\'&team='+row[1]+'&round='+(x+1)+'&index='+i+'&lang=\'+language.value+\'\'">' + rowscnum[x]+'</button></td>'
+							      x++
+							  }
+							  appendArr('<td>'+row[0]+' #'+row[1] + '</td> '+tmp+'</tr>');
+						      }
+						      
+						      
+						  }
+						  
 					      }
 					      
-					      
 					  }
-					  
+					  appendArr("</table></center>")
+					  appendPre(arr)
+					  language = document.getElementById("lang");
 				      }
-				      
-				  }
-				  appendArr("</table></center>")
-				  appendPre(arr)
-				  language = document.getElementById("lang");
-				  //  appendPre('<scr'+''+'ipt>function sortTable() {  var table, rows, switching, i, x, y, shouldSwitch;  table = document.getElementById("sort");  switching = true;  while (switching) {    switching = false;    rows = table.rows;    for (i = 1; i < (rows.length - 1); i++) {      shouldSwitch = false;      x = rows[i].getElementsByTagName("TD")[5];      y = rows[i + 1].getElementsByTagName("TD")[5];      if (Number(x.innerHTML) < Number(y.innerHTML)) {        shouldSwitch = true;        break;      }    }    if (shouldSwitch) {      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);      switching = true;    }  }};sortTable()</scri'+''+'pt>')
-				  //	      appendPre('<script>language = document.getElementById("lang");a=1; while (a<=document.getElementsByClassName("rank").length){document.getElementsByClassName("rank")[a-1].innerHTML = "disabled";a++;}</scr'+''+'ipt>')
-//				    language = document.getElementById("lang");a=1; while (a<=document.getElementsByClassName("rank").length){document.getElementsByClassName("rank")[a-1].innerHTML = "disabled";a++;}
-				    
-			      	    }
-			  	    }, function(response) {
-					appendPre('Error: ' + response.result.error.message);
-				    });
-			  	    
-			  	    
-			  	    
-		      		    }, function(response) {
-					appendPre('Error: ' + response.result.error.message);
-				    });
-		      		    
-		      		    
-		      		    
-		      		    
-		      		    
-		      		    
-		  		    }
-	      			    }
-	  			    } else {
-					appendPre('No data found.');
-				    }
-      				    }, function(response) {
-					appendPre('Error: ' + response.result.error.message);
-				    });
-  				    }
-				    
-				    
-				    
-				    function appendValues(spreadsheetId, range, valueInputOption, _values, callback) {
-					var values = _values
-					var body = {
-					    values: values
-					};
-					gapi.client.sheets.spreadsheets.values.append({
-					    spreadsheetId: spreadsheetId,
-					    range: range,
-					    valueInputOption: valueInputOption,
-					    resource: body
-					}).then((response) => {
-					    var result = response.result;
-					    console.log(`${result.updates.updatedCells} cells appended.`)
-					    document.getElementById('content').innerHTML = ""
-					    listMajors()
-					    
-					});
-				    }
-				    
-				    
-
-				  </script>
-
-  <script>
-    arr = [""]
-  function appendArr(value) {
-      arr.push(value);
-  }					
-  
-  </script>
-  
-
-<script async defer src="https://apis.google.com/js/api.js"
-	onload="this.onload=function(){};handleClientLoad()"
-	onreadystatechange="if (this.readyState === 'complete') this.onload()">
-</script>
-
-
-
-
+				  }, function(response) {
+				      appendPre('Error: ' + response.result.error.message);
+				  });
+				  
+				  
+				  
+			      }, function(response) {
+				  appendPre('Error: ' + response.result.error.message);
+			      });
+			      
+			  }
+		      }
+		  } else {
+		      appendPre('No data found.');
+		  }
+	      }, function(response) {
+		  appendPre('Error: ' + response.result.error.message);
+	      });
+	  }
+	  
+	  
+	  
+	  function appendValues(spreadsheetId, range, valueInputOption, _values, callback) {
+	      var values = _values
+	      var body = {
+		  values: values
+	      };
+	      gapi.client.sheets.spreadsheets.values.append({
+		  spreadsheetId: spreadsheetId,
+		  range: range,
+		  valueInputOption: valueInputOption,
+		  resource: body
+	      }).then((response) => {
+		  var result = response.result;
+		  console.log(`${result.updates.updatedCells} cells appended.`)
+		  document.getElementById('content').innerHTML = ""
+		  listMajors()
+		  
+	      });
+	  }
+	  
+	  
+	  
+	</script>
+	
+	<script>
+    	  arr = ""
+	  function appendArr(value) {
+//	      arr.push(value);
+	      arr = arr + value;
+	  }					
+	  
+	</script>
+	
+	
+	<script async defer src="https://apis.google.com/js/api.js"
+		onload="this.onload=function(){};handleClientLoad()"
+		onreadystatechange="if (this.readyState === 'complete') this.onload()">
+	</script>
+	
+	
+	
+	
+	
+	
+      </div>
       
-      
-</div>
-
-</section>
-<br>
+    </section>
+    <br>
     <script> 
-    $(function(){
-      $("#footer").load("footer.html"); 
-    });
+      $(function(){
+	  $("#footer").load("footer.html"); 
+      });
     </script>
-     <div id="footer"></div>
+    <div id="footer"></div>
   </div>
-<script src='js/accordian.js'></script>
-
+  <script src='js/accordian.js'></script>
+  
 </body>
 
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
   ga('create', 'UA-XXX-2', 'auto');
   ga('send', 'pageview');
-
+  
 </script>
 
