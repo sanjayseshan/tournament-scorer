@@ -153,7 +153,7 @@
 						  x++
 					      }
 
-					      document.write('Language: <select id="lang">\
+					      document.write('Scorer Language: <select id="lang" style="height: 40px">\
   <option value="en">English</option>\
   <option value="es">Spanish</option>\
   <option value="pt">Portuguese</option>\
@@ -163,7 +163,7 @@
   <option value="ro">Romanian</option>\
 </select><br>')
 					      
-					      document.write("<table id='sort' border='1'><tr><td>Rank</td><td>Team</td>"+tmp+"<td>High Score</td></tr>")
+					      document.write("<table style='width:100%;font-size:20px' id='sort' border='1'><tr style='font-weight: bold;'><td>Rank</td><td>Team</td>"+tmp+"<td>High Score</td></tr>")
 
 					  }
 
@@ -188,10 +188,10 @@
 						      tmp = ""
 						      x = 0
 						      while (x < rounds) {
-							  tmp = tmp + '<td><button onclick="window.parent.location.href = \'scorer/index.html\'+datalink+\'&team='+row[1]+'&round='+(x+1)+'&index='+i+'&lang=\'+language.value+\'\'">' + rowscnum[x]+'</button></td>'
+							  tmp = tmp + '<td><button style="background-color:lightblue;width:40px; height:40px" onclick="window.parent.location.href = \'scorer/index.html\'+datalink+\'&team='+row[1]+'&round='+(x+1)+'&index='+i+'&lang=\'+language.value+\'\'">' + rowscnum[x]+'</button></td>'
 							  x++
 						      }
-						      document.write('<td><text class="rank"></text></td><td>'+row[0]+' #'+row[1] + ':</td> '+tmp+'<td>'+Math.max.apply(null,rowscnum)+'</td></tr>');
+						      document.write('<td><text class="rank"></text></td><td>'+row[0]+' #'+row[1] + '</td> '+tmp+'<td>'+Math.max.apply(null,rowscnum)+'</td></tr>');
 						  }
 
 						  	 
