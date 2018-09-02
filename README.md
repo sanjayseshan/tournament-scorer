@@ -4,7 +4,7 @@ This is a version of the FLLTutorials/EV3Lessons INTO Orbit Scorer that is desig
 
 It uses Google Sheets/Drive APIs to manage scores and organize referees.
 
-This is version EV3Lessons Tournament scoring system v4.2.0 and runs off EV3Lessons Scorer v3.3.1.
+This is version EV3Lessons Tournament scoring system v4.3.0 and runs off EV3Lessons Scorer v3.3.1.
 
 To run, use a Python HTTP server:
 <code>python -m SimpleHTTPServer 8000</code> --> run in this directory,
