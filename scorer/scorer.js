@@ -30,17 +30,45 @@ function checkbuttonenables(mission,enabled) {
   if (document.getElementById('yes'+mission).checked == true) {
     $('#no'+enabled).checkboxradio('enable');
     $('#yes'+enabled).checkboxradio('enable');
+  } else {
+    $('#no'+enabled).checkboxradio('disable');
+    $('#yes'+enabled).checkboxradio('disable');
+    document.getElementById('yes'+enabled).checked = false
+    document.getElementById('no'+enabled).checked = true
+    recalc(0,mission,0)
   }
 }
+
 enables2 = []
-function createsliderenables(mission,enabled){
-  enables2 = enables2.concat([[mission,enabled]])
+function createsliderenables(mission,enabled,value){
+  enables2 = enables2.concat([[mission,enabled,value]])
 }
 
-function checksliderenables(mission,enabled) {
-  if (document.getElementById(mission).value == 2) {
+function checksliderenables(mission,enabled,value) {
+  if (document.getElementById(mission).value == value) {
     $('#no'+enabled).checkboxradio('enable');
     $('#yes'+enabled).checkboxradio('enable');
+  } else {
+    $('#no'+enabled).checkboxradio('disable');
+    $('#yes'+enabled).checkboxradio('disable');
+    document.getElementById('yes'+enabled).checked = false
+    document.getElementById('no'+enabled).checked = true
+    recalc(0,mission,0)
+  }
+}
+
+enables3 = []
+function createsliderenables2(mission,enabled) {
+  enables3 = enables3.concat([[mission,enabled]])
+}
+
+function checksliderenables2(mission,enables) {
+  if (document.getElementById('yes'+enables).checked == true) {
+    $("#"+mission).slider('enable');
+  } else {
+    $("#"+mission).val(0).slider( "refresh" );
+    $("#"+mission).slider('disable');
+    recalc(0,mission,0)
   }
 }
 
@@ -55,30 +83,41 @@ function check_missions(mission) {
     }
     conflictcount = conflictcount + 1
   }
-  enablecount = 0
-  while (enablecount < enables.length){
-    thismission = enables[enablecount][1]
-      $('#no'+thismission).checkboxradio('disable');
-      $('#yes'+thismission).checkboxradio('disable');
-    enablecount = enablecount + 1
-  }
-  enablecount = 0
-  while (enablecount < enables2.length){
-    thismission = enables2[enablecount][1]
-      $('#no'+thismission).checkboxradio('disable');
-      $('#yes'+thismission).checkboxradio('disable');
-    enablecount = enablecount + 1
-  }
+
+  // enablecount = 0
+  // while (enablecount < enables.length){
+  //   thismission = enables[enablecount][1]
+  //     $('#no'+thismission).checkboxradio('disable');
+  //     $('#yes'+thismission).checkboxradio('disable');
+  //   enablecount = enablecount + 1
+  // }
+
+  // enablecount = 0
+  // while (enablecount < enables2.length){
+  //   thismission = enables2[enablecount][1]
+  //   $('#no'+thismission).checkboxradio('disable');
+  //   $('#yes'+thismission).checkboxradio('disable');
+  //   enablecount = enablecount + 1
+  // }
+
   enablecount = 0
   while (enablecount < enables.length){
     checkbuttonenables(enables[enablecount][0],enables[enablecount][1])
     enablecount = enablecount + 1
   }
+
   enablecount = 0
   while (enablecount < enables2.length){
-    checksliderenables(enables2[enablecount][0],enables2[enablecount][1])
+    checksliderenables(enables2[enablecount][0],enables2[enablecount][1],enables2[enablecount][2])
     enablecount = enablecount + 1
   }
+
+  enablecount = 0
+  while (enablecount < enables3.length){
+    checksliderenables2(enables3[enablecount][0],enables3[enablecount][1])
+    enablecount = enablecount + 1
+  }
+
   enablecount = 0
   while (enablecount < enables.length){
     thismission = enables[enablecount][1]
@@ -122,9 +161,8 @@ function recalc(points,mission,saveValue){
   window[mission] = points
   window[mission+'save'] = saveValue
 
-    specialCases(mission)
+  specialCases(mission)
 
-    
   counter = 0
   allmission = 0
   while (counter < all_mission.length){
@@ -143,10 +181,10 @@ function recalc(points,mission,saveValue){
 
   document.getElementById('allpoints').innerHTML = allmission
 
-    var ranges = $("input[data-type='range']");
-    var radios = $("input[type='radio']");
+  var ranges = $("input[data-type='range']");
+  var radios = $("input[type='radio']");
 
-    ranges.slider("refresh");
-    radios.checkboxradio("refresh");
+  ranges.slider("refresh");
+  radios.checkboxradio("refresh");
 
 }

@@ -58,20 +58,20 @@ function createrange(mission, increment, min, max, start, description,js) {
   window[mission+'inc'] = increment
 
   document.write('<tr>\
-  <td style="font-size: 90%; padding-left: 10px; padding-right: 5px; background-color: sky;">\
+  <td style="font-size: 90%; padding-left: 10px; padding-right: 5px; background-color: white;">\
   '+description+'	  </td>\
   </tr>\
   <tr>\
   <td >\
-  <input type="range"  data-highlight="true" data-theme="b" data-show-value="true" name="'+mission+'" id="'+mission+'" value="'+start+'" min="'+min+'" max="'+max+'" step="1" onchange="check_missions(\''+mission+'\');recalc(this.value*'+increment+',\''+mission+'\',this.value);">\
+  <input type="range" increment="'+increment+'" data-highlight="true" data-theme="b" data-show-value="true" name="'+mission+'" id="'+mission+'" value="'+start+'" min="'+min+'" max="'+max+'" step="1" onchange="check_missions(\''+mission+'\');recalc(this.value*'+increment+',\''+mission+'\',this.value);">\
   <p id="'+mission+'Txt" style="color: red"></p>\
   </td>\
   </tr>')
-
-  if (start > 0) {
-    recalc(increment*start,mission,start)
-  }
-
+    if (start > 0) {
+	$(document).ready(function() {
+	    recalc(increment*start,mission,start)
+	});
+    }
 }
 
 
@@ -85,7 +85,7 @@ function starttable(mission, title, image, children, extrarows){
   <table style="width:100%; border: 1px solid indigo; border-collapse: collapse; " border="1">\
   <tr>\
     <td rowspan="'+element+'" width="60px"> <img src="missions/'+image+'" width="58px"></td>\
-    <td style="font-size: 110%; text-align: center; background-color: indigo; color: white;">\
+    <td style="font-size: 110%; text-align: center; background-color: blue; color: white;">\
   '+mission+" - "+title+": "+'\
       <i style="font-style: normal;" id="'+mission+'pts">0</i>\
     </td>\

@@ -1,0 +1,462 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="style-pre.css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="css/accordian.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="w3.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="language-detector.js"></script>
+
+
+  <title>Start</title>
+  <style>
+  .button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 15px;
+      margin: 4px 2px;
+      -webkit-transition-duration: 0.4s; /* Safari */
+      transition-duration: 0.4s;
+      cursor: pointer;
+  }
+
+  .button2 {
+      border-radius: 12px;
+      background-color: #008CBA;
+      color: white;
+      border: 2px solid #008CBA;
+  }
+
+  .button2:hover {
+      background-color: white;
+      color: black;
+      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+
+  </style>
+
+</head>
+<body>
+    <script>
+    $(function(){
+      $("#topbar").load("topbar.html");
+    });
+    </script>
+    <div id="topbar"></div><br>
+
+
+  <img src="images/loading.gif" id="loading-gif" width="100" height="100" style="display:none; position:fixed; left:50%; top:50%; background-color: white;">
+  <div style="max-width: 1024px;margin:0 auto;">
+    <script>
+      $(function(){
+	  $("#header").load("header.html");
+      });
+    </script>
+    <div id="header"></div><br>
+    <section style="padding: 5px 5px 5px 15px;">
+
+      <h2>FLLTutorials Tournament Scoring System</h2>
+    </section><br><section> <div class="text-body" style="font-size: 15px;">
+
+
+	<p style="font-size: 150%;">
+	  <script src='https://www.google.com/recaptcha/api.js'></script>
+
+	  <body>
+
+	    The administrator of the tournament will have to sign in to a Google account to set up the tournament.  <br><br>
+
+	    
+During your login process, you will get a pop-up saying "This app isn't verified". Click on the small "advanced" link in the bottom left and then click "Go to flltutorials.com (unsafe)"
+<br><br>
+In the next dialog - click the "Allow" button. This tournament system will be creating spreadsheets for storing scores and sharing them with the other referees.
+<br>
+<br>
+After you sign in, pick a tournament name. If you want to access an existing tournament you have made, type in the name of your tournament. If you have forgotten your tournament name, go to Tournaments List in the menu bar.
+<br>
+<br>
+      <button id="authorize_button" class="button button2" style="max-width: 250px; display: none" ><i class="fa fa-toggle-off" aria-hidden="true"></i> Sign in to Google</button>
+      <button id="signout_button" class="button button2" style="max-width: 250px; display: none" ><i class="fa fa-toggle-on" aria-hidden="true"></i> Sign out of Google</button>
+
+      <div id="googleContent" style="display:none">
+	    <!-- HTML form --><p style="font-size: 200%"> Tournament Name:
+	    <input style="font-size:25px;max-width:500px; height:50px" type="text" rows="20" cols="50" id="text" name="text" value="">
+	    <br>
+</p>
+
+	    <script type="text/javascript">
+    	      // Client ID and API key from the Developer Console
+    	      var CLIENT_ID = '901774097490-294f3s7it32rh65oodpclij4alj81h2m.apps.googleusercontent.com';
+	      var API_KEY = 'AIzaSyDQp4VLGP04s6X6Efp96waVV4NjYvTirYc';
+
+	      // Array of API discovery doc URLs for APIs used by the quickstart
+	      var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4","https://www.googleapis.com/discovery/v1/apis/drive/v2/rest"];
+
+	      // Authorization scopes required by the API; multiple scopes can be
+	      // included, separated by spaces.
+	      var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly https://spreadsheets.google.com/feeds https://www.googleapis.com/auth/drive.metadata.readonly https://www.googleapis.com/auth/drive.file";
+
+	      var authorizeButton = document.getElementById('authorize_button');
+	      var signoutButton = document.getElementById('signout_button');
+
+	      /**
+	       *  On load, called to load the auth2 library and API client library.
+	       */
+	      function handleClientLoad() {
+		  gapi.load('client:auth2', initClient);
+	      }
+
+	      /**
+	       *  Initializes the API client library and sets up sign-in state
+	       *  listeners.
+	       */
+	      function initClient() {
+		  gapi.client.init({
+		      apiKey: API_KEY,
+		      clientId: CLIENT_ID,
+		      discoveryDocs: DISCOVERY_DOCS,
+		      scope: SCOPES
+		  }).then(function () {
+		      // Listen for sign-in state changes.
+		      gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+		      // Handle the initial sign-in state.
+		      updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+		      authorizeButton.onclick = handleAuthClick;
+		      signoutButton.onclick = handleSignoutClick;
+		  });
+	      }
+
+	      /**
+	       *  Called when the signed in status changes, to update the UI
+	       *  appropriately. After a sign-in, the API is called.
+	       */
+	      function updateSigninStatus(isSignedIn) {
+		  if (isSignedIn) {
+		      authorizeButton.style.display = 'none';
+		      signoutButton.style.display = 'block';
+          document.getElementById('googleContent').style.display = "inline"
+		  } else {
+		      authorizeButton.style.display = 'block';
+		      signoutButton.style.display = 'none';
+          document.getElementById('googleContent').style.display = "none"
+
+		  }
+		  listMajors();
+	      }
+
+	      /**
+	       *  Sign in the user upon button click.
+	       */
+	      function handleAuthClick(event) {
+		  gapi.auth2.getAuthInstance().signIn();
+	      }
+
+	      /**
+	       *  Sign out the user upon button click.
+	       */
+	      function handleSignoutClick(event) {
+		  gapi.auth2.getAuthInstance().signOut();
+	      }
+
+	      /**
+	       * Append a pre element to the body containing the given message
+	       * as its text node. Used to display the results of the API call.
+	       *
+	       * @param {string} message Text to be placed in pre element.
+	       */
+	      function appendPre(message) {
+		  var pre = document.getElementById('content');
+		  var textContent = message + "<br>"
+		  //document.createTextNode(message + '\n');
+		  pre.innerHTML = pre.innerHTML + textContent;
+	      }
+
+	      /**
+	       * Print the names and majors of students in a sample spreadsheet:
+	       * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
+	       */
+	      function listMajors() {
+		  document.getElementById('content').innerHTML = ""
+		  gapi.client.sheets.spreadsheets.values.get({
+		      spreadsheetId: '11eecocqxnYIqsYY-24pGfqPwhAEanU9mvCK4G43Abj0',
+		      range: 'A:D',
+		  }).then(function(response) {
+		      var range = response.result;
+		      /*
+		      if (range.values.length > 0) {
+			  for (i = 0; i < range.values.length; i++) {
+			      var row = range.values[i];
+			      // Print columns A and E, which correspond to indices 0 and 4.
+			      appendPre(row[0] + ': <a href="links.html?tourn=' + row[0] + '&score='+row[1]+'&mission='+row[2]+'&config='+row[3]+'">link</a>');
+			  }
+		      } else {
+			  appendPre('No data found.');
+		      }
+		      */
+		  }, function(response) {
+		      appendPre('Error: ' + response.result.error.message);
+		  });
+	      }
+
+	      function appendValues(spreadsheetId, range, valueInputOption, _values, callback) {
+		  var values = _values
+		  var body = {
+		      values: values
+		  };
+		  gapi.client.sheets.spreadsheets.values.append({
+		      spreadsheetId: spreadsheetId,
+		      range: range,
+		      valueInputOption: valueInputOption,
+		      resource: body
+		  }).then((response) => {
+		      var result = response.result;
+		      console.log(`${result.updates.updatedCells} cells appended.`)
+		      document.getElementById('content').innerHTML = ""
+		      listMajors()
+
+		  });
+	      }
+
+	      function zeros(dimensions) {
+		  var array = [];
+
+		  for (var i = 0; i < dimensions[0]; ++i) {
+		      array.push(dimensions.length == 1 ? '-' : zeros(dimensions.slice(1)));
+		  }
+
+		  return array;
+	      }
+	      function makeSheet() {
+		  var spreadsheetBody = {
+		      //	    "title":"FLLTutorials.com FLL Into Orbit Scorer"
+		      // TODO: Add desired properties to the request body.
+		  };
+
+		  gapi.client.sheets.spreadsheets.values.get({
+		      spreadsheetId: '11eecocqxnYIqsYY-24pGfqPwhAEanU9mvCK4G43Abj0',
+		      range: 'A:D',
+		  }).then(function(response) {
+		      var range = response.result;
+//		      alert(range)
+		      tmp0 = 0
+		      if (range.values != undefined) {
+			  if (range.values.length > 0) {
+			      for (i = 0; i < range.values.length; i++) {
+				  var row = range.values[i];
+				  // Print columns A and E, which correspond to indices 0 and 4.
+				  appendPre(row[0] + ': <a href="links.html?tourn=' + row[0] + '&score='+row[1]+'&mission='+row[2]+'&config='+row[3]+'">link</a>');
+				  if (row[0] == document.getElementById('text').value) {
+				      //  alert("Existing tournament with this name found! Press Okay/Close to be redirected there.")
+				      if (confirm('An existing tournament with this name was found. Would you line to redirect to it?')) {
+					  window.location.href = "links.html?tourn=" + row[0] + "&score="+row[1]+"&mission="+row[2]+"&config="+row[3]
+				      } else {
+					  // Do nothing!
+				      }
+				      tmp0 = 1
+				  }
+			      }
+			  }
+		      }
+		      if (tmp0 == 0) {
+
+
+
+			  alert('Tournament is being created. Once done we will automatically redirect you to your dashboard. It may take up to 30 seconds.')
+			  document.getElementById('loading-gif').style.display = "inline";
+
+				  var request = gapi.client.sheets.spreadsheets.create({}, spreadsheetBody);
+				  request.then(function(response) {
+				      // TODO: Change code below to process the `response` object:
+				      sheet1 = response.result;
+				      console.log(sheet1);
+				      var spreadsheetBody = {
+					  //	    "title":"FLLTutorials.com FLL Into Orbit Scorer"
+					  // TODO: Add desired properties to the request body.
+				      };
+
+				      var request = gapi.client.sheets.spreadsheets.create({}, spreadsheetBody);
+				      request.then(function(response) {
+					  // TODO: Change code below to process the `response` object:
+					  sheet2 = response.result;
+					  console.log(sheet2);
+					  var spreadsheetBody = {
+					      //	    "title":"FLLTutorials.com FLL Into Orbit Scorer"
+					      // TODO: Add desired properties to the request body.
+					  };
+
+					  var request = gapi.client.sheets.spreadsheets.create({}, spreadsheetBody);
+					  request.then(function(response) {
+					      // TODO: Change code below to process the `response` object:
+
+					      sheet3 = response.result;
+					      console.log(sheet3);
+
+
+					      appendValues(sheet3["spreadsheetId"],'A:A', 'USER_ENTERED', [["# of rounds:","3"],
+													   ["Team Name:", "Team #:"],
+													   ["team e.g. 1", "2001"],
+													   ["team e.g. 2", "2002"],
+													   ["team e.g. 3", "2003"]])
+
+
+					      appendValues(sheet1["spreadsheetId"],'A:A', 'USER_ENTERED', zeros([200,7]))
+					      appendValues(sheet2["spreadsheetId"],'A:A', 'USER_ENTERED', zeros([200,7]))
+
+					      insertPermission(sheet1["spreadsheetId"])
+					      insertPermission(sheet3["spreadsheetId"])
+
+					      nameSheet('Score Sheet: '+document.getElementById('text').value,sheet1["spreadsheetId"])
+					      nameSheet('Score Archive Sheet: '+document.getElementById('text').value,sheet2["spreadsheetId"])
+					      nameSheet('Config Sheet: '+document.getElementById('text').value,sheet3["spreadsheetId"])
+
+
+					      appendValues('11eecocqxnYIqsYY-24pGfqPwhAEanU9mvCK4G43Abj0','A:A', 'USER_ENTERED', [[document.getElementById('text').value,sheet1["spreadsheetId"],sheet2["spreadsheetId"],sheet3["spreadsheetId"]]])
+
+					      setTimeout(function(){window.location.href = "links.html?tourn=" + document.getElementById('text').value + "&score="+sheet1["spreadsheetId"]+"&mission="+sheet2["spreadsheetId"]+"&config="+sheet3["spreadsheetId"];}, 5000);
+
+
+
+					  }, function(reason) {
+					      console.error('error: ' + reason.result.error.message);
+					  });
+				      }, function(reason) {
+					  console.error('error: ' + reason.result.error.message);
+				      });
+				  }, function(reason) {
+				      console.error('error: ' + reason.result.error.message);
+				  });
+
+			      }
+			/*
+		      } else {
+			  appendPre('No data found.');
+		      }*/
+		  }, function(response) {
+		      appendPre('Error: ' + response.result.error.message);
+		  });
+
+	      }
+
+	      function nameSheet(name, sheet) {
+		  var requests = [];
+		  // Change the spreadsheet's title.
+		  requests.push({
+		      updateSpreadsheetProperties: {
+			  properties: {
+			      title: name
+			  },
+			  fields: 'title'
+		      }
+		  });
+		  var batchUpdateRequest = {requests: requests}
+
+		  gapi.client.sheets.spreadsheets.batchUpdate({
+		      spreadsheetId: sheet,
+		      resource: batchUpdateRequest
+		  }).then((response) => {
+		      var findReplaceResponse = response.result.replies[1].findReplace;
+		      console.log(`${findReplaceResponse.occurrencesChanged} replacements made.`);
+		  });
+	      }
+
+
+	      function insertPermission(file){
+		  request = gapi.client.drive.permissions.insert({
+		      'fileId': file,
+		      'resource': {
+			  "withLink": true,
+			  "role": "reader",
+			  "type": "anyone"
+		      }
+		  })
+		  request.then(function(response) {console.log(response)});
+	      }
+
+	      function loadSheet() {
+		  var spreadsheetBody = {
+		      //	    "title":"FLLTutorials.com FLL Into Orbit Scorer"
+		      // TODO: Add desired properties to the request body.
+		  };
+
+		  gapi.client.sheets.spreadsheets.values.get({
+		      spreadsheetId: '11eecocqxnYIqsYY-24pGfqPwhAEanU9mvCK4G43Abj0',
+		      range: 'A:D',
+		  }).then(function(response) {
+		      var range = response.result;
+//		      alert(range)
+		      if (range.values != undefined) {
+			  if (range.values.length > 0) {
+			      aaa = 0
+			      for (i = 0; i < range.values.length; i++) {
+				  var row = range.values[i];
+				  // Print columns A and E, which correspond to indices 0 and 4.
+				  appendPre(row[0] + ': <a href="links.html?tourn=' + row[0] + '&score='+row[1]+'&mission='+row[2]+'&config='+row[3]+'">link</a>');
+				  if (row[0] == document.getElementById('text').value) {
+				      alert("Existing tournament with this name found! Press Okay/Close to be redirected there.")
+				      window.location.href = "links.html?tourn=" + row[0] + "&score="+row[1]+"&mission="+row[2]+"&config="+row[3]
+				      aaa = 1
+				  } 
+			      }
+			      if (aaa == 0) {
+				      alert('No tournament with this name was found. Please try again or check the Tournaments List.')
+			      }
+			  }
+		      }
+		  });
+	      }
+
+	    </script>
+
+	    <script async defer src="https://apis.google.com/js/api.js"
+		    onload="this.onload=function(){};handleClientLoad()"
+		    onreadystatechange="if (this.readyState === 'complete') this.onload()">
+	    </script>
+
+	    <div>
+	      <button onclick="makeSheet();" class="button button2" style="max-width: 400px;" ><i class="fa fa-folder" aria-hidden="true"></i> &emsp; Create Tournament</button>
+	      <button onclick="loadSheet();" class="button button2" style="max-width: 400px;" ><i class="fa fa-folder" aria-hidden="true"></i> &emsp; Load Existing Tournament</button>
+	    </div>
+</div>
+
+	    <br>
+	</p>
+	<div style="display:none">
+				 <b>Load Tournament:</b><br><br>
+				 <div id="content"></div>
+	</div>
+</body>
+
+</div>
+
+</section>
+<br>
+<script>
+    $(function(){
+	$("#footer").load("footer.html");
+    });
+</script>
+<div id="footer"></div>
+</div>
+<script src='js/accordian.js'></script>
+
+</body>
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-XXX-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
