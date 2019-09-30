@@ -73,6 +73,8 @@ function checksliderenables2(mission,enables) {
 }
 
 function check_missions(mission) {
+  specialCasesCheck(mission)
+
   conflictcount = 0
   while (conflictcount < conflicts.length){
     if (conflicts[conflictcount][2] == '') {
@@ -160,8 +162,7 @@ function recalc(points,mission,saveValue){
   //var mission = 'hi'
   window[mission] = points
   window[mission+'save'] = saveValue
-
-  specialCases(mission)
+  specialCasesRecalc(mission)
 
   counter = 0
   allmission = 0
