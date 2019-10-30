@@ -5,10 +5,15 @@
 // Note that the line "langs=[XXX]" has no effect in old versions of the scorer and will just be ignored. To update the language list in old versions, copy that line to the equivalent place in index.html
 
 // Universal
-versionText = "1.8 - 20/08/2019"
+versionText = "1.10 - 10/18/2019"
+
+versionNum = "1.11"
+versionDay = 30
+versionMonth = 10
+versionYear = "2019"
 
 //langs=['en:United States:English','pt:Brazil:Portugues','de:Germany:Deutsche','es:Spain:Español','sk:Slovakia:Slovenský','nl:Netherlands:Nederlands','el:Greece:ελληνικά','hu:Hungary:Magyar','he:Israel:עִבְרִית‎','fr:France:français']
-langs=['en:United States:English','es:Spain:Español','pt:Brazil:Portugues','nl:Netherlands:Nederlands','el:Greece:ελληνικά','de:Germany:Deutsche','it:Italy:Italiano','eu:Basque:Euskara']
+langs=['en:United States:English','es:Spain:Español','pt:Brazil:Portugues','nl:Netherlands:Nederlands','el:Greece:ελληνικά','de:Germany:Deutsche','it:Italy:Italiano','eu:Basque:Euskara','ro:Romania:Românește']
 //  langs=['en:United States:English','es:Spain:Español','pt:Brazil:Portugues','de:Germany:Deutsche','el:Greece:ελληνικά','tr:Turkey:Türk','ro:Romania:Română','nl:Netherlands:Nederlands','hu:Hungary:Magyar','it:Italy:Italiano']
 
 
@@ -42,9 +47,9 @@ function languageInit() {
     loadedText = "Loaded"
     googleSaveText = "Google Sheets (Testing)"
     localSaveText = "Local Browser Storage (Default)"
-    isIE = "Google saving system is incompatible with Microsoft Internet Explorer. You can either switch to another browser or continue by using the legacy saving system (click above)"
+    isIE = "Google saving system is incompatible with Microsoft Internet Explorer. You can either switch to another browser or continue by using the local storage saving system (click above)"
 
-    googleIntro = "You can save your scores to a Google Spreadsheet. This helps you keep track of progress over the season. See instructions at the bottom of the page."
+    googleIntro = "You can save your scores to a Google Spreadsheet. This helps you keep track of progress over the season. See instructions at the bottom of the page. This may not work for everyone. Please use the Local Storage system if it does not work."
     pastSaves = "Past Saves"
     instructions = "Instructions"
     instructionsA = "The key steps to using the save system are:"
@@ -73,7 +78,7 @@ function languageInit() {
     undefinedText = "undefined"
 
     revisionText = "CITY SHAPER Scorer Version "
-    copyrightText = "Copyright (c) 2019 Seshan Brothers"
+    copyrightText = "Copyright (c) "+versionYear+" Seshan Brothers"
 
     title = "CITY SHAPER Scorer"
 
@@ -165,8 +170,8 @@ function languageInit() {
 	totalText = "Pontuação Total"
 	savedText = "Salvo"
 	loadedText = "Carregado"
-	googleSaveText = "Planilha Google (Padrão)"
-	localSaveText = "Armazenamento do Navegador Local(Legacy)"
+	googleSaveText = "Planilha Google"
+	localSaveText = "Armazenamento do Navegador Local(Padrão)"
 	isIE = " O armazenamento no sistema Google é incompatível com o Microsoft Internet Explorer. Você pode escolher outro navegador ou continuar utilizando o Sistema de salvamento Legacy (clique acima)"
 
 	googleIntro = "Você pode salvar suas pontuações em uma planilha do Google. Isso ajuda você a acompanhar o progresso durante a temporada. Veja as instruções na parte inferior da página."
@@ -198,7 +203,7 @@ function languageInit() {
 	undefinedText = "indefinido"
 
 	revisionText = "Marcador CITY SHAPER Versão "
-	copyrightText = "Copyright (c) 2019 Seshan Brothers"
+	copyrightText = "Copyright (c) "+versionYear+" Seshan Brothers"
 
 	title = "Marcador CITY SHAPER"
 
@@ -286,8 +291,8 @@ function languageInit() {
 	totalText = "Gesamtpunktzahl"
 	savedText = "Gespeichert"
 	loadedText = "Geladen"
-	googleSaveText = "Google Sheets (Standard)"
-	localSaveText = "Festplatte"
+	googleSaveText = "Google Sheets"
+	localSaveText = "Festplatte (Standard)"
 	isIE = "In Google speichern funktioniert nicht im Internet Explorer. Du kannst entweder einen anderen Browser benutzen oder auf der Festplatte speichern (siehe oben)."
 
 	googleIntro = "Du kannst deine Punktzahlen in einem Google Spreadsheet speichern. Das hilft Dir, deinen Fortschritt während der Saison zu verfolgen. Für eine Anleitung an das Ende der Seite scrollen."
@@ -319,7 +324,7 @@ function languageInit() {
 	undefinedText = "undefiniert"
 
 	revisionText = "CITY SHAPER Punkterechner Version "
-	copyrightText = "Copyright (c) 2019 Seshan Brothers"
+	copyrightText = "Copyright (c) "+versionYear+" Seshan Brothers"
 
 	title = "CITY SHAPER Punkterechner"
 
@@ -407,8 +412,8 @@ function languageInit() {
 	totalText = "Totaal aantal punten"
 	savedText = "Opgeslagen"
 	loadedText = "Geladen"
-	googleSaveText = "Google sheets (standaard)"
-	localSaveText = "Lokale browser opslag (oud)"
+	googleSaveText = "Google sheets"
+	localSaveText = "Lokale browser opslag (standard)"
 	isIE = "Google-opslagsysteem is niet compatibel met Microsoft Internet Explorer. Je kunt naar een andere browser overschakelen of doorgaan met het oude opslagsysteem (klik hierboven)"
 
 	googleIntro = "Je kunt je scores bewaren in een Google spreadsheet. Dit helpt je de voortgang gedurende het seizoen bij te houden. Zie instructies onderaan de pagina."
@@ -440,7 +445,7 @@ function languageInit() {
 	undefinedText = "undefined"
 
 	revisionText = "CITY SHAPER Scorer Versie "
-	copyrightText = "Copyright (c) 2019 Seshan Brothers"
+	copyrightText = "Copyright (c) "+versionYear+" Seshan Brothers"
 
 	title = "CITY SHAPER Scorer"
 
@@ -526,9 +531,9 @@ function languageInit() {
 	totalText = "Puntuación Total"
 	savedText = "Guardada"
 	loadedText = "Cargada"
-	googleSaveText = "Hojas de Google (Por defecto)"
-	localSaveText = "Almacenamiento en Navegador Local (Heredado)"
-	isIE = "El sistema de guardado de Google no es compatible con Microsoft Internet Explorer. Puede cambiar a otro navegador o continuar usando el sistema de guardado heredado (haga clic arriba)."
+	googleSaveText = "Hojas de Google (probando)"
+	localSaveText = "Almacenamiento en Navegador Local (Por defecto)"
+	isIE = "El sistema de guardado de Google no es compatible con Microsoft Internet Explorer. Puede cambiar a otro navegador o continuar usando el sistema de guardado local (haga clic arriba)."
 
 	googleIntro = "Puede guardar sus puntuaciones en una hoja de cálculo de Google. Esto le ayuda a mantener un registro del progreso durante la temporada. Vea las instrucciones en la parte inferior de la página."
 	pastSaves = "Anteriormente Guardadas"
@@ -559,7 +564,7 @@ function languageInit() {
 	undefinedText = "indefinido"
 
 	revisionText = "Marcador CITY SHAPER Versión "
-	copyrightText = "Copyright (c) 2019 Seshan Brothers"
+	copyrightText = "Copyright (c) "+versionYear+" Seshan Brothers"
 
 	title = "Marcador CITY SHAPER"
 
@@ -670,7 +675,7 @@ function languageInit() {
 	totalText = "Össz pontszám"
 	savedText = "Mentve"
 	loadedText = "Betöltve"
-	googleSaveText = "Google Sheets (Alapértelmezett)"
+	googleSaveText = "Google Sheets"
 	localSaveText = "Helyi böngésző tárhelye"
 	isIE = "A Google mentési rendszer nem kompatibilis a Microsoft Internet Explorerrel. Átválthatsz egy másik böngészőre vagy folytathatod a böngésző tárhelyébe mentéssel (kattints fent)"
 	systemText = "Mentés helye"
@@ -734,8 +739,8 @@ function languageInit() {
 	totalText = "Τελική Βαθμολογία"
 	savedText = "Αποθηκεύτηκε"
 	loadedText = "Φορτώθηκε"
-	googleSaveText = "Φύλλα Google (Default)"
-	localSaveText = "Αποθήκευση Προγράμματος Περιήγησης (Legacy)"
+	googleSaveText = "Φύλλα Google"
+	localSaveText = "Αποθήκευση Προγράμματος Περιήγησης (Default)"
 	isIE = "Το σύστημα αποθήκευση της Google δεν είναι συμβατό με το πρόγραμμα περιήγησης “Internet Explorer” της Microsoft. Μπορείτε είτε να αλλάξετε πρόγραμμα περιήγησης είτε να συνεχίσετε χρησιμοποιώντας το σύστημα αποθήκευσης της εφαρμογής (Πατήστε παρακάτω)"
 	systemText = "Αποθήκευση Συστήματος: "
 
@@ -766,7 +771,7 @@ function languageInit() {
 	undefinedText = "δεν καθορίζεται"
 
 	revisionText = "CITY SHAPER Scorer Έκδοση "
-	copyrightText = "Copyright (c) 2019 Seshan Brothers"
+	copyrightText = "Copyright (c) "+versionYear+" Seshan Brothers"
 
 	title = "CITY SHAPER Βαθμολογία"
 
@@ -902,8 +907,8 @@ function languageInit() {
 	totalText = "Toplam Puan"
 	savedText = "Kaydedildi"
 	loadedText = "Yüklendi"
-	googleSaveText = " Google E-Tablolar (Varsayılan)"
-	localSaveText = " Yerel Tarayıcı Deposu (Eski)"
+	googleSaveText = " Google E-Tablolar"
+	localSaveText = " Yerel Tarayıcı Deposu (Varsayılan)"
 	isIE = " Google kaydetme sistemi Microsoft Internet Explorer ile uyumsuz. Başka bir tarayıcıya geçebilir veya eski kaydetme sistemini kullanarak devam edebilirsiniz (yukarıyı tıklayın)"
 
 	googleIntro = " Puanlarınızı bir Google E-tablosuna kaydedebilirsiniz. Bu, sezon boyunca ilerlemeyi takip etmenize yardımcı olur. Sayfanın altındaki talimatları görün."
@@ -935,67 +940,6 @@ function languageInit() {
 
 	translatorCredit = " Uygulamanın Türkçe çevirisi www.robotum.net kurucusu, Yücel Tekin tarafından yapılmıştır."
 
-    } else if (language == "ro") {
-	yes = "Da"
-	no = "Nu"
-	partly = "Parțial"
-	completely = "Complet"
-	resetText = "Resetați"
-	saveText = "Salvați"
-	savescoreText="Salvați scorul"
-	loadsaveText="Încărcați o salvare:"
-	deletesaveText="Ștergeți salvările"
-	importsaveText="Importați o salvare"
-	exportsaveText="Exportați o salvare"
-	signin = "Conectați-vă cu"
-	signout = "Deconectați-vă din"
-	GoogleCreate = "Creați o foaie de calcul nouă"
-	GoogleOpen = "Deschideți foaia de calcul Google"
-	created = "Creat"
-	savedto = "Salvat în"
-	teamText = "Echipa"
-	roundText = "Runda"
-	dateText = "Data/Ora"
-	totalText = "Total puncte"
-	savedText = "Salvat"
-	loadedText = "Încărcat"
-	googleSaveText = "Foi de calcul Google (implicit)"
-	localSaveText = "Stocare locală în browser (mod vechi)"
-	isIE = "Sistemul Google de salvare este incompatibil cu Microsoft Internet Explorer. Puteți trece la un alt browser sau puteți continua utilizând sistemul de salvare vechi (selectați opțiunea mai sus)"
-	systemText = "Sistem de salvare: "
-
-	googleIntro = "Puteți salva scorurile într-o foaie de calcul Google. Acest lucru vă va ajuta să urmăriți evoluția pe parcursul sezonului. Consultați instrucțiunile din partea de jos a paginii."
-	pastSaves = "Salvări anterioare"
-	instructions = "Instrucțiuni"
-	instructionsA = "Pașii principali pentru utilizarea sistemului de salvare sunt:"
-	instructionsB = '1. Conectați-vă la contul dvs. Google. Este posibil să primiți o avertizare "Această aplicație nu este verificată". Dacă da, faceți clic pe "Avansat " și apoi pe "Mergeți la Calculator scor FLL (nesigur)"'
-	instructionsC = '2. Dacă nu ați creat o foaie de calcul în trecut - dați clic pe "Creați o foaie nouă"'
-	instructionsD = '3. Dacă ați creat o foaie de calcul în trecut, asigurați-vă că ID-ul foii de calcul Google este completat și nu rămâne "nedefinit". Dacă doriți să partajați o foaie de calcul între dispozitive, trebuie să introduceți manual acest ID.'
-	instructionsE = '4. De fiecare dată când doriți să salvați un scor, faceți clic pe "Salvați scorul" - astfel foaia de calcul va fi actualizată cu scorul și data curentă'
-	instructionsF = '5. Dacă doriți să inspectați foaia de calcul și să o editați, faceți clic pe "Deschideți foaia de calcul Google". Dacă aveți vreodată nevoie de ID-ul foii de calcul Google – acesta se află în adresa URL a foii de calcul atunci când o deschideți.'
-	instructionsG = '6. Puteți, de asemenea, să încărcați un anumit scor anterior în calculator de scor prin introducerea numărului salvării folosind butoanele "+" și "-" și apoi prin apăsarea butonului "Încărcați o salvare:" '
-
-
-	monthNames = ["","ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie"];
-	improvementText = " Îmbunătățire"
-	scorerText = "Calculator de scor"
-	timersText = "Cronometre"
-	savesText = "Salvări"
-	startText = "Start"
-	stopText = "Stop"
-	pointsText = "Puncte"
-
-	timerText = "Temporizator:"
-	stopwatchText = " Cronometru:"
-
-	idText = "ID foaie de calcul Google: "
-	undefinedText = "nedefinit"
-
-
-
-	translatorCredit = "Traducerea și adaptarea în limba română realizată de Asociația pentru educație STEM creativă (CRESTEM). Copyright (c) 2018. www.crestem.org"
-
-
     } else if (language == "it") {
 	translatorCredit = "Tradotto in italiano da Giuseppe Comis"
 
@@ -1022,8 +966,8 @@ function languageInit() {
 	totalText = " Punteggio Totale"
 	savedText = "Salvato"
 	loadedText = "Caricato"
-	googleSaveText = "Fogli Google(Default)"
-	localSaveText = "Salva in Locale (Legacy)"
+	googleSaveText = "Fogli Google"
+	localSaveText = "Salva in Locale (Default)"
 	isIE = "Il sistema di salvataggio di Google non è compatibile con Microsoft Internet Explorer. Puoi passare a un altro browser o continuare utilizzando il sistema di salvataggio legacy (fai clic sopra)"
 
 	googleIntro = "Puoi salvare i tuoi punteggi su un foglio di lavoro Google. Questo ti aiuta a tenere traccia dei progressi nel corso della stagione. Vedi le istruzioni in fondo alla pagina."
@@ -1055,7 +999,7 @@ function languageInit() {
 	undefinedText = "Indefinito"
 
 	revisionText = "CITY SHAPER Scorer Version "
-	copyrightText = "Copyright (c) 2019 Seshan Brothers"
+	copyrightText = "Copyright (c) "+versionYear+" Seshan Brothers"
 
 	title = "CITY SHAPER Scorer"
 
@@ -1142,8 +1086,8 @@ function languageInit() {
 	totalText = "Emaitza totala"
 	savedText = "Gordeta"
 	loadedText = "Kargatuta"
-	googleSaveText = "Googleren orriak (Lehenespenez)"
-	localSaveText = "Nabigatzaile Lokaleko Almazenamendua (Heredatua)"
+	googleSaveText = "Googleren orriak"
+	localSaveText = "Nabigatzaile Lokaleko Almazenamendua (Lehenespenez)"
 	isIE = " Googleren gordetze sistema ez da bateragarria Internet Explorerrekin. Nabigatzailez aldatu dezakezu edo heredatutako gordetze sistema erabiltzen jarrai dezakezu (klikatu goian)"
 
 	googleIntro = "Zure puntuazioak Google-ren kalkulu horri batean gorde ditzakezu. Honek denboraldi osoan zehar egin dituzun aurrerapenak gordetzen lagundu zaitzake. Ikusi argibideak orriaren behealdean."
@@ -1176,7 +1120,7 @@ function languageInit() {
 	undefinedText = "zehaztugabea "
 
 	revisionText = "Zenbatzaile errebisioa CITY SHAPER"
-	copyrightText = "Copyright (c) 2019 Seshan Brothers"
+	copyrightText = "Copyright (c) "+versionYear+" Seshan Brothers"
 
 	title = "CITY SHAPER Zenbatzailea"
 
@@ -1237,12 +1181,134 @@ function languageInit() {
 
 	M14="Zehaztasuna"
 	M14a="Zenbat zehaztasun lekuko daude joko lurrazalean?"
+
+    } else if (language == "ro") {
+	translatorCredit = "Traducerea și adaptarea în limba română realizată de Ștefan RĂDULESCU @ Asociația pentru educație STEM creativă (CRESTEM). Copyright (c) "+versionYear+". www.crestem.org"
+
+	yes = "Da"
+	no = "Nu"
+	partly = "Parțial"
+	completely = "Complet"
+	resetText = "Resetați"
+	saveText = "Salvați"
+	savescoreText="Salvați scorul"
+	loadsaveText="Încărcați scorul:"
+	deletesaveText="Ștergeți scorurile salvate"
+	importsaveText="Importați fișierul"
+	exportsaveText="Exportați fișierul"
+	signin = "Conectați-vă cu"
+	signout = "Deconectați-vă din"
+	GoogleCreate = "Creați o foaie de calcul nouă"
+	GoogleOpen = "Deschideți foaia de calcul Google"
+	created = "Creat"
+	savedto = "Salvat în"
+	teamText = "Echipa"
+	roundText = "Runda"
+	dateText = "Data/Ora"
+	totalText = "Total puncte"
+	savedText = "Salvat"
+	loadedText = "Încărcat"
+	googleSaveText = "Foi de calcul Google (experimental)"
+	localSaveText = "Stocare locală în browser (implicit)"
+	isIE = "Sistemul Google de salvare este incompatibil cu Microsoft Internet Explorer. Puteți trece la un alt browser sau puteți continua utilizând sistemul de salvare vechi (selectați opțiunea mai sus)"
+
+	googleIntro = "Puteți salva scorurile într-o foaie de calcul Google. Acest lucru vă va ajuta să urmăriți evoluția pe parcursul sezonului. Consultați instrucțiunile din partea de jos a paginii."
+	pastSaves = "Salvări anterioare"
+	instructions = "Instrucțiuni"
+	instructionsA = "Pașii principali pentru utilizarea sistemului de salvare sunt:"
+	instructionsB = '1. Conectați-vă la contul dvs. Google. Este posibil să primiți o avertizare "Această aplicație nu este verificată". Dacă da, faceți clic pe "Avansat" și apoi pe "Mergeți la Calculator scor FLL (nesigur)"'
+	instructionsC = '2. Dacă nu ați creat o foaie de calcul în trecut - dați clic pe "Creați o foaie nouă"'
+	instructionsD = '3. Dacă ați creat o foaie de calcul în trecut, asigurați-vă că ID-ul foii de calcul Google este completat și nu rămâne "nedefinit". Dacă doriți să partajați o foaie de calcul între dispozitive, trebuie să introduceți manual acest ID.'
+	instructionsE = '4. De fiecare dată când doriți să salvați un scor, faceți clic pe "Salvați scorul" - astfel foaia de calcul va fi actualizată cu scorul și data curentă'
+	instructionsF = '5. Dacă doriți să inspectați foaia de calcul și să o editați, faceți clic pe "Deschideți foaia de calcul Google". Dacă aveți vreodată nevoie de ID-ul foii de calcul Google – acesta se află în adresa URL a foii de calcul atunci când o deschideți.'
+	instructionsG = '6. Puteți, de asemenea, să încărcați un anumit scor anterior în calculator de scor prin introducerea numărului salvării folosind butoanele "+" și "-" și apoi prin apăsarea butonului "Încărcați o salvare:" '
+
+	var monthNames = ["","ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie"];
+	improvementText = "Îmbunătățire"
+	scorerText = "Calculator de scor"
+	timersText = "Cronometre"
+	savesText = "Salvări"
+	startText = "Start"
+	stopText = "Stop"
+	pointsText = "Puncte"
+
+	systemText = "Sistem de salvare: "
+
+	timerText = "Temporizator:"
+	stopwatchText = "Cronometru:"
+
+	idText = "ID foaie de calcul Google: "
+	undefinedText = "nedefinit"
+
+	revisionText = "Calculator de scor CITY SHAPER. Versiunea "
+	copyrightText = "Copyright (c) "+versionYear+" Seshan Brothers"
+	title = "Calculator de scor CITY SHAPER"
+
+	missionNumbering = "M" // i.e. display as M01, M02, etc. (first letter of the word "Mission" in your language)
+
+	A00="Avantaj"
+	A00a="Robotul vostru și toate accesoriile / uneltele sale încap în ”zona mică de inspecție”?"
+	A00b="5 puncte adiționale la fiecare misiune (M01-M13) și 10 puncte adiționale la misiunea M02."
+
+	M01="La înălțime"
+	M01a="Robotul este <b>susținut</b> de Pod?"
+	M01b=" Câte steaguri sunt ridicate, în mod vizibil, pe orice distanță, doar de către robot"
+
+	M02="Macara"
+	M02a="Blocul albastru cu cârlig este în mod vizibil coborât orice distanță față de gaura de ghidare?"
+	M02b="Blocul albastru cu cârlig este <b>independent</b> și <b>susținut</b> de către alt bloc albastru?"
+	M02c=" Nivelul 1 este complet în cercul albastru?"
+
+	M03="Drona de inspecție"
+	M03a="Drona de inspecție este <b>susținută</b> de axul(A) de pe pod?"
+
+	M04="Proiectat pentru animale sălbatice"
+	M04a="Liliacul este <b>susținut</b> de ramura(B) copacului?"
+
+	M05="Casa din copac"
+	M05a="Câte blocuri sunt <b>independente</b> și <b>susținute</b> de ramurile mari ale copacului?"
+	M05b="Câte blocuri sunt <b>independente</b> și <b>susținute</b> de ramurile mici ale copacului?"
+
+	M06="Blocaj în trafic"
+	M06a="Blocajul în trafic este ridicat, cu partea mobilă <b>independentă</b> și <b>susținută</b> doar de propriile balamale?"
+
+	M07="Leagăn"
+	M07a="Leagănul este eliberat?"
+
+	M08="Ascensor"
+	M08a="Părțile mobile ale ascensorului sunt <b>independente</b> și <b>susținute</b> doar de propriile balamale, iar cabina albastră este jos?"
+	M08b="Părțile mobile ale ascensorului sunt <b>independente</b> și  <b>susținute</b> doar de propriile balamale, iar ascensorul se află în poziția de echilibru?"
+
+	M09="Factor de siguranță"
+	M09a="Câte grinzi au fost lovite și coborâte cel puțin pe jumătate?"
+	M09b="Clădirea de test trebuie să fie <b>independentă</b> și <b>susținută</b> doar de grinzile albastre."
+
+	M10="Construcție de oțel"
+	M10a="Structura de oțel este în picioare, fiind <b>independentă</b> și <b>susținută</b> doar de propriile balamale?"
+
+	M11=" Arhitectură inovatoare"
+	M11a="Structura este <b>complet</b> în oricare cerc?"
+	M11b="Structura este <b>parțial</b> în oricare cerc?"
+	M11c="Structură trebuie să fie concepută de echipa voastră și în mod evident mai mare decât un bloc albastru. Structura pentru misiunea 11 trebuie construită doar cu elementele din pachetul 10."
+
+	M12="Proiectare & Construire"
+	M12a="Câte cercuri au cel puțin un bloc de aceeași culoare, <b>complet </b> în cerc, în contact direct și uniform cu planșa?"
+	M12b="Dacă există stive <b>independente</b> cel puțin <b>parțial</b> în oricare cerc, care este suma tuturor înălțimilor?"
+	M12c=" Cercul albastru nu face parte din misiunea 12. O stivă este formată din unul sau mai multe blocuri, cu primul nivel atingând planșa direct și uniform. Următoarele niveluri ating direct și uniform nivelul inferior."
+
+	M13="Îmbunătățiri pentru sustenabilitate"
+	M13a="Câte îmbunătățiri (panouri solare, grădină pe acoperiș, izolație) sunt <b>independente</b> și <b>susținute</b> de o stivă aflată, cel puțin parțial, în oricare dintre cercuri?"
+
+	M14="Precizie"
+	M14a="Câte discuri de precizie au rămas pe teren?"
+
     }
 
 
 
 
     improvement= improvementText
+    versionText = versionNum + " - " + versionDay + " " + monthNames[versionMonth] + " " + versionYear
 }
 
 languageInit()
